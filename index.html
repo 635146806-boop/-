@@ -3,154 +3,543 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1080, height=1440">
-<title>出海风险分析 V6</title>
+<title>出海风险分析</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:#0A0A0F; font-family:sans-serif; overflow:hidden; }
+  body { background:#000; font-family:sans-serif; overflow:hidden; }
 
-  /* Root composition wrapper */
   .comp-root { position:relative; width:1080px; height:1440px; overflow:hidden; color:#FFF; }
 
-  /* Green grid background */
-  .bg-grid { position:absolute; inset:0; z-index:0;
-    background-image:linear-gradient(rgba(0,255,136,0.06) 1px, transparent 1px),linear-gradient(90deg, rgba(0,255,136,0.06) 1px, transparent 1px);
-    background-size:60px 60px; }
+  /* Background: black + green dot grid + grid lines */
+  .bg { position:absolute; inset:0; z-index:0; background:#000; }
+  .bg::before { content:''; position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle, rgba(0,255,136,0.22) 1px, transparent 1.5px),
+      linear-gradient(rgba(0,255,136,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,136,0.06) 1px, transparent 1px);
+    background-size: 50px 50px, 50px 50px, 50px 50px;
+  }
 
-  /* Scanline overlay for tech feel */
-  .scanline { position:absolute; inset:0; z-index:1; pointer-events:none;
-    background:repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px); }
+  /* Top bar */
+  .top-bar { position:absolute; top:20px; left:40px; right:40px; z-index:15;
+    display:flex; justify-content:space-between; align-items:center; }
+  .top-title { font-size:18px; font-weight:700; color:#00FF88; letter-spacing:2px; }
+  .top-tag { font-size:14px; font-weight:600; color:#FFF;
+    background:rgba(0,255,136,0.12); padding:4px 14px; border-radius:12px;
+    border:1px solid rgba(0,255,136,0.25); }
 
-  /* Video frame with green border */
-  .video-frame { position:absolute; top:70px; left:50px; right:50px; height:700px;
-    border:2px solid #00FF88; border-radius:6px; overflow:hidden; z-index:10; background:#000;
-    box-shadow:0 0 30px rgba(0,255,136,0.12), inset 0 0 30px rgba(0,255,136,0.06); }
+  /* Content frame */
+  .frame { position:absolute; top:120px; left:40px; right:40px; height:580px;
+    border:2px solid #00FF88; border-radius:4px; overflow:hidden; z-index:10;
+    background:#000; box-shadow:0 0 20px rgba(0,255,136,0.3); }
 
-  .video-frame video, .video-frame img { width:100%; height:100%; object-fit:cover; }
+  /* Scene containers - all hidden by default, shown via GSAP */
+  .scene { position:absolute; inset:0; display:flex;
+    flex-direction:column; align-items:center; justify-content:center;
+    opacity:0; }
 
-  /* Professor overlay */
-  .prof-overlay { position:absolute; top:70px; left:50px; right:50px; height:700px; z-index:11; pointer-events:none;
-    display:flex; flex-direction:column; justify-content:flex-end; align-items:center; padding-bottom:30px;
-    background:linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%, transparent 100%); }
-  .prof-overlay .prof-name { font-size:36px; font-weight:900; color:#FFD700; text-shadow:0 2px 12px rgba(0,0,0,0.8); }
-  .prof-overlay .prof-title { font-size:22px; font-weight:600; color:#FFF; margin-top:6px; text-shadow:0 2px 8px rgba(0,0,0,0.8); }
+  /* Caption area */
+  .caption-area { position:absolute; top:720px; left:40px; right:40px; z-index:20;
+    text-align:center; padding:20px 0; }
+  .caption-text { font-size:42px; font-weight:900; color:#FFF;
+    text-shadow:0 2px 8px rgba(0,0,0,0.9); line-height:1.3; }
+  .caption-sub { font-size:26px; font-weight:600; color:#B0B0C0; margin-top:8px; }
 
-  /* Title area */
-  .title-area { position:absolute; top:790px; left:50px; right:50px; z-index:20; text-align:center; }
-  .title-main { font-size:48px; font-weight:900; line-height:1.2; text-shadow:0 0 40px rgba(0,255,136,0.3); }
-  .title-sub { font-size:28px; font-weight:600; color:#B0B0C0; margin-top:10px; }
+  /* Host zone */
+  .host-zone { position:absolute; bottom:40px; left:0; right:0; z-index:30;
+    display:flex; flex-direction:column; align-items:center; gap:12px; }
+  .host-avatar { width:120px; height:120px; border-radius:50%; border:3px solid #00FF88;
+    box-shadow:0 0 25px rgba(0,255,136,0.4); background:rgba(0,255,136,0.1);
+    display:flex; align-items:center; justify-content:center; font-size:48px; }
+  .host-label { font-size:20px; font-weight:700; color:#00FF88; }
 
-  /* Captions area */
-  .captions-area { position:absolute; bottom:210px; left:50px; right:50px; z-index:30; text-align:center; font-size:34px; font-weight:700; color:#FFF; text-shadow:0 2px 8px rgba(0,0,0,0.9); }
+  /* Scene dots */
+  .scene-dots { position:absolute; bottom:200px; left:0; right:0; z-index:25;
+    display:flex; justify-content:center; gap:8px; }
+  .scene-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.2); }
+  .scene-dot.active { background:#00FF88; box-shadow:0 0 8px rgba(0,255,136,0.6); }
 
-  /* Host zone at bottom */
-  .host-zone { position:absolute; bottom:0; left:0; right:0; height:170px; z-index:40;
-    background:linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-    border-top:1px solid rgba(0,255,136,0.12);
-    display:flex; align-items:center; justify-content:center; gap:16px; }
-  .host-avatar { width:90px; height:90px; border-radius:50%; border:3px solid #00FF88;
-    box-shadow:0 0 20px rgba(0,255,136,0.3); background:rgba(0,255,136,0.08);
-    display:flex; align-items:center; justify-content:center; font-size:36px; }
-  .host-name { font-size:24px; font-weight:700; color:#00FF88; }
+  /* ============= SCENE STYLES ============= */
 
-  /* Corner decorations */
-  .corner-tl, .corner-tr, .corner-bl, .corner-br { position:absolute; width:20px; height:20px; z-index:15; pointer-events:none; }
-  .corner-tl { top:70px; left:50px; border-top:2px solid #00FF88; border-left:2px solid #00FF88; }
-  .corner-tr { top:70px; right:50px; border-top:2px solid #00FF88; border-right:2px solid #00FF88; }
-  .corner-bl { top:770px; left:50px; border-bottom:2px solid #00FF88; border-left:2px solid #00FF88; }
-  .corner-br { top:770px; right:50px; border-bottom:2px solid #00FF88; border-right:2px solid #00FF88; }
+  /* Scene 1: Opening - big numbers 70% 90% */
+  .s1-nums { display:flex; gap:80px; }
+  .s1-num { font-size:120px; font-weight:900; color:#FFD700; line-height:1; }
+  .s1-arrow { width:0; height:0; border-left:30px solid transparent;
+    border-right:30px solid transparent; border-top:50px solid #FF3366; margin:20px 0; }
+  .s1-bar { width:40px; height:80px; background:#FF3366; }
+  .s1-label { font-size:28px; font-weight:700; color:#FFF; margin-top:20px; }
+  .s1-sub { font-size:24px; color:#FF3366; font-weight:700; margin-top:8px; }
+
+  /* Scene 2: Professor */
+  .s2-name { font-size:48px; font-weight:900; color:#FFD700; }
+  .s2-title { font-size:26px; color:#FFF; margin-top:8px; }
+  .s2-org { font-size:18px; color:#9090A0; margin-top:6px; }
+
+  /* Scene 3: Three risks cards */
+  .s3-cards { display:flex; gap:24px; }
+  .s3-card { width:290px; height:420px; border-radius:10px; border:2px solid; padding:24px 20px;
+    display:flex; flex-direction:column; background:rgba(17,17,24,0.95); }
+  .s3-card .risk-label { font-size:14px; font-weight:700; margin-bottom:8px; }
+  .s3-card .risk-title { font-size:24px; font-weight:900; color:#FFF; margin-bottom:16px; }
+  .s3-card .risk-item { font-size:16px; color:#C0C0D0; margin:6px 0; padding-left:12px; border-left:2px solid; }
+  .s3-title { font-size:28px; font-weight:900; color:#FFF; margin-bottom:30px; }
+
+  /* Scene 4: US Confrontation */
+  .s4-header { font-size:22px; font-weight:900; color:#FF3366; margin-bottom:24px;
+    background:rgba(26,16,32,0.9); padding:10px 30px; border-radius:6px;
+    border:1px solid #FF3366; }
+  .s4-row { display:flex; gap:16px; align-items:center; margin-bottom:20px; }
+  .s4-us { background:rgba(13,13,26,0.95); border:2px solid #FF3366; border-radius:8px;
+    padding:16px 24px; text-align:center; }
+  .s4-us .us-name { font-size:24px; font-weight:900; color:#FFF; }
+  .s4-us .us-sub { font-size:14px; color:#FF3366; }
+  .s4-vs { font-size:20px; font-weight:900; color:#FF3366; }
+  .s4-target { background:rgba(13,13,26,0.95); border:1px solid #FFD700; border-radius:8px;
+    padding:12px 18px; text-align:center; min-width:200px; }
+  .s4-target .t-name { font-size:20px; font-weight:900; color:#FFD700; }
+  .s4-target .t-item { font-size:13px; color:#A0A0B0; margin:2px 0; }
+  .s4-stats { display:flex; gap:20px; margin-top:12px; }
+  .s4-stat { background:rgba(13,13,26,0.95); border-radius:6px; padding:12px 28px; text-align:center; }
+  .s4-stat .st-val { font-size:24px; font-weight:900; }
+  .s4-stat .st-label { font-size:13px; color:#9090A0; }
+
+  /* Scene 5: Belt & Road */
+  .s5-title { font-size:36px; font-weight:900; color:#00FF88; margin-bottom:30px; }
+  .s5-route { display:flex; align-items:center; gap:8px; margin-bottom:24px; }
+  .s5-node { width:60px; height:60px; border-radius:50%; display:flex;
+    align-items:center; justify-content:center; font-size:14px; font-weight:700; color:#FFF; }
+  .s5-line { width:40px; height:3px; background:#00FF88; }
+  .s5-desc { font-size:20px; color:#9090A0; margin-bottom:16px; }
+  .s5-opp { font-size:26px; font-weight:900; color:#00FF88; }
+
+  /* Scene 6: 70-90% same as scene 1 */
+  /* Scene 7: Policy change */
+  .s7-warn { width:80px; height:80px; border:3px solid #FFD700; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:40px;
+    font-weight:900; color:#FFD700; margin-bottom:20px; }
+  .s7-cases { display:flex; gap:24px; margin:24px 0; }
+  .s7-case { background:rgba(17,17,24,0.95); border-radius:8px; padding:16px 24px;
+    text-align:center; border:2px solid; min-width:200px; }
+  .s7-case .c-name { font-size:22px; font-weight:900; color:#FFF; }
+  .s7-case .c-policy { font-size:15px; margin:6px 0; }
+  .s7-case .c-year { font-size:13px; color:#606070; }
+
+  /* Scene 8: Five nations */
+  .s8-nations { display:flex; gap:12px; margin-bottom:20px; }
+  .s8-nation { width:155px; height:200px; border-radius:8px; border:2px solid;
+    background:rgba(17,17,24,0.95); display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:8px; }
+  .s8-nation .n-name { font-size:20px; font-weight:900; color:#FFF; }
+  .s8-nation .n-policy { font-size:14px; }
+  .s8-nation .n-year { font-size:12px; color:#606070; }
+  .s8-impact { font-size:18px; color:#FF3366; background:rgba(26,16,32,0.9);
+    padding:12px 30px; border-radius:6px; border:1px solid #FF3366; }
+
+  /* Scene 9: EU Risk */
+  .s9-circle { width:180px; height:180px; border-radius:50%; border:3px solid #FFD700;
+    display:flex; align-items:center; justify-content:center; font-size:60px;
+    font-weight:900; color:#FFD700; margin-bottom:24px; background:rgba(13,13,26,0.95); }
+  .s9-risks { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; max-width:700px; }
+  .s9-risk { background:rgba(17,17,24,0.95); border:1px solid #FFD700; border-radius:20px;
+    padding:8px 20px; font-size:16px; color:#C0C0D0; }
+
+  /* Scene 10: Three responses */
+  .s10-cards { display:flex; gap:20px; }
+  .s10-card { width:270px; height:250px; border-radius:10px; border:2px solid;
+    background:rgba(17,17,24,0.95); display:flex; flex-direction:column;
+    align-items:center; padding-top:30px; }
+  .s10-card .r-title { font-size:24px; font-weight:900; color:#FFF; margin-bottom:16px; }
+  .s10-card .r-item { font-size:16px; color:#C0C0D0; margin:6px 0; }
+
+  /* Scene 11: Geopolitical */
+  .s11-globe { width:200px; height:200px; border-radius:50%; border:3px solid #00FF88;
+    display:flex; align-items:center; justify-content:center; font-size:48px;
+    font-weight:900; color:#00FF88; margin-bottom:24px; background:rgba(13,13,26,0.95); }
+  .s11-points { display:flex; flex-direction:column; gap:8px; }
+  .s11-point { font-size:20px; color:#C0C0D0; }
+
+  /* Scene 12: Compliance */
+  .s12-gate { width:280px; height:200px; border-radius:10px; border:3px solid #00FF88;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    background:rgba(13,13,26,0.95); margin-bottom:20px; }
+  .s12-gate .gate-title { font-size:48px; font-weight:900; color:#00FF88; }
+  .s12-gate .gate-sub { font-size:16px; color:#00FF88; margin-top:8px; }
+
+  /* Scene 13: Localization */
+  .s13-boxes { display:flex; align-items:center; gap:0; }
+  .s13-box { width:180px; height:200px; border-radius:10px; border:2px solid;
+    background:rgba(13,13,26,0.95); display:flex; align-items:center;
+    justify-content:center; font-size:30px; font-weight:900; }
+  .s13-arrow { width:60px; display:flex; align-items:center; }
+  .s13-arr-line { width:40px; height:4px; }
+  .s13-arr-head { width:0; height:0; border-top:12px solid transparent;
+    border-bottom:12px solid transparent; }
+
+  /* Scene 14: Handshake */
+  .s14-boxes { display:flex; align-items:center; gap:0; }
+  .s14-box { width:200px; height:200px; border-radius:10px; border:2px solid;
+    background:rgba(13,13,26,0.95); display:flex; align-items:center;
+    justify-content:center; font-size:32px; font-weight:900; }
+
+  /* Scene 15 & 16: Growth / Final */
+  .s15-arrow-up { width:0; height:0; border-left:40px solid transparent;
+    border-right:40px solid transparent; border-bottom:70px solid #00FF88; }
+  .s15-bar { width:40px; height:100px; background:#00FF88; margin-top:-2px; }
+  .s15-stats { display:flex; gap:20px; margin-top:24px; }
+  .s15-stat { background:rgba(13,13,26,0.95); border-radius:6px; padding:14px 28px;
+    text-align:center; border:1px solid; }
+  .s15-stat .st-val { font-size:22px; font-weight:900; }
+  .s15-stat .st-label { font-size:13px; color:#9090A0; margin-top:4px; }
 </style>
 </head>
 <body>
 <div class="comp-root" data-composition-id="main" data-width="1080" data-height="1440" data-start="0" data-duration="234">
-<div class="bg-grid"></div>
-<div class="scanline"></div>
 
-<audio id="narration" src="public/口播音频.mp3" preload="auto" data-start="0"></audio>
+<div class="bg"></div>
 
-<div class="video-frame" id="videoFrame"></div>
+<audio id="narration" src="public/%E5%8F%A3%E6%92%AD%E9%9F%B3%E9%A2%91.mp3" preload="auto" data-start="0"></audio>
 
-<!-- Professor overlay (hidden by default) -->
-<div class="prof-overlay" id="profOverlay" style="opacity:0;">
-  <div class="prof-name" id="profName"></div>
-  <div class="prof-title" id="profTitle"></div>
+<!-- Top bar -->
+<div class="top-bar">
+  <div class="top-title">出海风险分析</div>
+  <div class="top-tag">第十二届走出去风险发布会</div>
 </div>
 
-<!-- Corner accents -->
-<div class="corner-tl"></div>
-<div class="corner-tr"></div>
-<div class="corner-bl"></div>
-<div class="corner-br"></div>
+<!-- Content frame with ALL scenes (CSS rendered, no external images) -->
+<div class="frame" id="contentFrame">
 
-<div class="title-area">
-  <div class="title-main" id="titleMain"></div>
-  <div class="title-sub" id="titleSub"></div>
+  <!-- Scene 1: Opening (0-7s) -->
+  <div class="scene" id="s1">
+    <div class="s1-nums"><span class="s1-num">70%</span><span class="s1-num">90%</span></div>
+    <div class="s1-arrow"></div><div class="s1-bar"></div>
+    <div class="s1-label">霍尔木兹海峡航运量</div>
+    <div class="s1-sub">断崖式下降</div>
+  </div>
+
+  <!-- Scene 2: Professor (7-14s) -->
+  <div class="scene" id="s2">
+    <div class="s2-name">李海涛 教授</div>
+    <div class="s2-title">长江商学院院长 · 金融学教授</div>
+    <div class="s2-org">第十二届中国企业走出去风险发布会</div>
+  </div>
+
+  <!-- Scene 3: Three Risks (14-20s) -->
+  <div class="scene" id="s3">
+    <div class="s3-title">中国企业出海 · 三大核心风险</div>
+    <div class="s3-cards">
+      <div class="s3-card" style="border-color:#FF3366">
+        <div class="risk-label" style="color:#FF3366">RISK 01</div>
+        <div class="risk-title">美国系统性对抗</div>
+        <div class="risk-item" style="border-color:#FF3366">特朗普2026新政</div>
+        <div class="risk-item" style="border-color:#FF3366">对华关税升至54%</div>
+        <div class="risk-item" style="border-color:#FF3366">300万移民驱逐</div>
+        <div class="risk-item" style="border-color:#FF3366">技术封锁升级</div>
+        <div class="risk-item" style="border-color:#FF3366">中美经济脱钩</div>
+      </div>
+      <div class="s3-card" style="border-color:#FFD700">
+        <div class="risk-label" style="color:#FFD700">RISK 02</div>
+        <div class="risk-title">政策突变风险</div>
+        <div class="risk-item" style="border-color:#FFD700">一夜之间政策变卦</div>
+        <div class="risk-item" style="border-color:#FFD700">印尼镍矿出口禁令</div>
+        <div class="risk-item" style="border-color:#FFD700">印度封禁中国APP</div>
+        <div class="risk-item" style="border-color:#FFD700">越南反倾销调查</div>
+        <div class="risk-item" style="border-color:#FFD700">沙特本地化要求</div>
+      </div>
+      <div class="s3-card" style="border-color:#00FF88">
+        <div class="risk-label" style="color:#00FF88">RISK 03</div>
+        <div class="risk-title">欧盟潜在风险</div>
+        <div class="risk-item" style="border-color:#00FF88">最大贸易顺差来源</div>
+        <div class="risk-item" style="border-color:#00FF88">反补贴调查启动</div>
+        <div class="risk-item" style="border-color:#00FF88">碳边境调节机制</div>
+        <div class="risk-item" style="border-color:#00FF88">新能源车关税</div>
+        <div class="risk-item" style="border-color:#00FF88">海外建厂策略</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scene 4: US Confrontation (20-28s) -->
+  <div class="scene" id="s4">
+    <div class="s4-header">美国系统性对抗 — 全球博弈格局</div>
+    <div class="s4-us"><div class="us-name">美国</div><div class="us-sub">系统性对抗中心</div></div>
+    <div style="height:16px"></div>
+    <div class="s4-row">
+      <div class="s4-target"><div class="t-name">委内瑞拉</div><div class="t-item">石油制裁</div><div class="t-item">金融封锁</div></div>
+      <div class="s4-vs">VS</div>
+      <div class="s4-target"><div class="t-name">古巴</div><div class="t-item">长期禁运</div><div class="t-item">旅游限制</div></div>
+      <div class="s4-vs">VS</div>
+      <div class="s4-target"><div class="t-name">霍尔木兹</div><div class="t-item">军事威慑</div><div class="t-item">70-90%下降</div></div>
+    </div>
+    <div class="s4-stats">
+      <div class="s4-stat"><div class="st-val" style="color:#FF3366">20+</div><div class="st-label">受影响国家</div></div>
+      <div class="s4-stat"><div class="st-val" style="color:#FFD700">54%</div><div class="st-label">关税增幅</div></div>
+      <div class="s4-stat"><div class="st-val" style="color:#00FF88">70-90%</div><div class="st-label">航运下降</div></div>
+    </div>
+  </div>
+
+  <!-- Scene 5: Belt & Road (28-36s) -->
+  <div class="scene" id="s5">
+    <div class="s5-title">一带一路 · 全球南方</div>
+    <div class="s5-route">
+      <div class="s5-node" style="background:#FF3366">中国</div>
+      <div class="s5-line"></div>
+      <div class="s5-node" style="background:#FFD700">委内</div>
+      <div class="s5-line"></div>
+      <div class="s5-node" style="background:#FFD700">古巴</div>
+      <div class="s5-line"></div>
+      <div class="s5-node" style="background:#00FF88">霍尔</div>
+    </div>
+    <div class="s5-desc">转口贸易路径 · 全球南方市场 · 区域供应链重构</div>
+    <div class="s5-opp">中国企业出海新机遇</div>
+  </div>
+
+  <!-- Scene 6: Hormuz 70-90% (36-50s) -->
+  <div class="scene" id="s6">
+    <div class="s1-nums"><span class="s1-num">70%</span><span class="s1-num">90%</span></div>
+    <div class="s1-arrow"></div><div class="s1-bar"></div>
+    <div class="s1-label">霍尔木兹海峡航运量</div>
+    <div class="s1-sub">断崖式下降</div>
+  </div>
+
+  <!-- Scene 7: Policy change (50-60s) -->
+  <div class="scene" id="s7">
+    <div class="s7-warn">!</div>
+    <div style="font-size:32px;font-weight:900;color:#FF3366">政策突变</div>
+    <div style="font-size:20px;color:#B0B0C0;margin-top:8px">一夜之间政策变卦</div>
+    <div class="s7-cases">
+      <div class="s7-case" style="border-color:#FF3366">
+        <div class="c-name">印尼</div><div class="c-policy" style="color:#FF3366">镍矿出口禁令</div><div class="c-year">2020</div>
+      </div>
+      <div class="s7-case" style="border-color:#FFD700">
+        <div class="c-name">印度</div><div class="c-policy" style="color:#FFD700">封禁中国APP</div><div class="c-year">2020</div>
+      </div>
+      <div class="s7-case" style="border-color:#00FF88">
+        <div class="c-name">越南</div><div class="c-policy" style="color:#00FF88">反倾销调查</div><div class="c-year">2021</div>
+      </div>
+    </div>
+    <div style="font-size:18px;color:#FF3366;margin-top:12px">政策风险是中国企业出海最大的不确定性因素</div>
+  </div>
+
+  <!-- Scene 8: Five nations (60-78s) -->
+  <div class="scene" id="s8">
+    <div style="font-size:30px;font-weight:900;color:#FF3366;margin-bottom:20px">政策突变案例</div>
+    <div class="s8-nations">
+      <div class="s8-nation" style="border-color:#FF3366"><div class="n-name">印尼</div><div class="n-policy" style="color:#FF3366">镍矿禁令</div><div class="n-year">2020</div></div>
+      <div class="s8-nation" style="border-color:#FFD700"><div class="n-name">印度</div><div class="n-policy" style="color:#FFD700">封禁APP</div><div class="n-year">2020</div></div>
+      <div class="s8-nation" style="border-color:#00FF88"><div class="n-name">越南</div><div class="n-policy" style="color:#00FF88">反倾销</div><div class="n-year">2021</div></div>
+      <div class="s8-nation" style="border-color:#FF3366"><div class="n-name">沙特</div><div class="n-policy" style="color:#FF3366">本地化</div><div class="n-year">2023</div></div>
+      <div class="s8-nation" style="border-color:#FFD700"><div class="n-name">非洲</div><div class="n-policy" style="color:#FFD700">政策调整</div><div class="n-year">持续</div></div>
+    </div>
+    <div class="s8-impact">提前政治尽调 · 多元化布局 · 应急预案机制</div>
+    <div style="font-size:24px;font-weight:900;color:#00FF88;margin-top:12px">合规是门票，不是成本</div>
+  </div>
+
+  <!-- Scene 9: EU Risk (78-90s) -->
+  <div class="scene" id="s9">
+    <div style="font-size:32px;font-weight:900;color:#FFD700;margin-bottom:8px">欧盟潜在风险</div>
+    <div style="font-size:20px;color:#B0B0C0;margin-bottom:20px">最大贸易顺差来源 · 关税冲击</div>
+    <div class="s9-circle">EU</div>
+    <div class="s9-risks">
+      <div class="s9-risk">反补贴调查</div><div class="s9-risk">碳边境调节</div>
+      <div class="s9-risk">新能源关税</div><div class="s9-risk">海外建厂</div>
+      <div class="s9-risk">绿色合规</div>
+    </div>
+  </div>
+
+  <!-- Scene 10: Three responses (90-98s) -->
+  <div class="scene" id="s10">
+    <div style="font-size:30px;font-weight:900;color:#00FF88;margin-bottom:20px">三大应对之道</div>
+    <div class="s10-cards">
+      <div class="s10-card" style="border-color:#FFD700">
+        <div class="r-title">地缘洞察</div>
+        <div class="r-item">政治尽调</div><div class="r-item">风险评估</div><div class="r-item">多国布局</div>
+      </div>
+      <div class="s10-card" style="border-color:#00FF88">
+        <div class="r-title">合规能力</div>
+        <div class="r-item">法律合规</div><div class="r-item">税务合规</div><div class="r-item">数据合规</div>
+      </div>
+      <div class="s10-card" style="border-color:#00FF88">
+        <div class="r-title">本地化执行</div>
+        <div class="r-item">本地运营</div><div class="r-item">文化融合</div><div class="r-item">人才本土</div>
+      </div>
+    </div>
+    <div style="font-size:22px;font-weight:900;color:#FFD700;margin-top:20px">走进去才能走出来</div>
+  </div>
+
+  <!-- Scene 11: Geopolitical (98-115s) -->
+  <div class="scene" id="s11">
+    <div style="font-size:36px;font-weight:900;color:#FFD700;margin-bottom:8px">地缘洞察能力</div>
+    <div style="font-size:22px;color:#B0B0C0;margin-bottom:20px">不能只算经济账，不算政治账</div>
+    <div class="s11-globe">全球</div>
+    <div class="s11-points">
+      <div class="s11-point">政治尽调优先</div>
+      <div class="s11-point">地缘风险评估</div>
+      <div class="s11-point">多国布局策略</div>
+      <div class="s11-point">应急预案准备</div>
+    </div>
+  </div>
+
+  <!-- Scene 12: Compliance (115-128s) -->
+  <div class="scene" id="s12">
+    <div style="font-size:36px;font-weight:900;color:#00FF88;margin-bottom:8px">合规能力</div>
+    <div style="font-size:22px;color:#B0B0C0;margin-bottom:20px">合规是门票，不是成本</div>
+    <div class="s12-gate">
+      <div class="gate-title">合规</div><div class="gate-sub">COMPLIANCE</div>
+    </div>
+    <div class="s11-points">
+      <div class="s11-point">法律合规审查</div><div class="s11-point">税务合规体系</div>
+      <div class="s11-point">数据合规保护</div><div class="s11-point">ESG合规标准</div>
+    </div>
+  </div>
+
+  <!-- Scene 13: Localization (128-145s) -->
+  <div class="scene" id="s13">
+    <div style="font-size:32px;font-weight:900;color:#00FF88;margin-bottom:8px">本地化执行能力</div>
+    <div style="font-size:20px;color:#B0B0C0;margin-bottom:20px">走进去才能走出来</div>
+    <div class="s13-boxes">
+      <div class="s13-box" style="border-color:#00FF88;color:#00FF88">中国</div>
+      <div class="s13-arrow">
+        <div class="s13-arr-line" style="background:#00FF88"></div>
+        <div class="s13-arr-head" style="border-left:16px solid #00FF88"></div>
+      </div>
+      <div class="s13-box" style="border-color:#FFD700;color:#FFD700">当地</div>
+    </div>
+    <div class="s11-points" style="margin-top:16px">
+      <div class="s11-point">本地化运营</div><div class="s11-point">文化融合</div>
+      <div class="s11-point">人才本土化</div><div class="s11-point">供应链协同</div>
+    </div>
+  </div>
+
+  <!-- Scene 14: Handshake (145-170s) -->
+  <div class="scene" id="s14">
+    <div style="font-size:32px;font-weight:900;color:#FFD700;margin-bottom:8px">走进去才能走出来</div>
+    <div style="font-size:20px;color:#B0B0C0;margin-bottom:20px">深入当地 · 扎根当地 · 与当地共赢</div>
+    <div class="s14-boxes">
+      <div class="s14-box" style="border-color:#00FF88;color:#00FF88">中国</div>
+      <div class="s13-arrow">
+        <div class="s13-arr-line" style="background:#00FF88"></div>
+        <div class="s13-arr-head" style="border-left:16px solid #00FF88"></div>
+      </div>
+      <div class="s14-box" style="border-color:#FFD700;color:#FFD700">当地</div>
+    </div>
+    <div class="s11-points" style="margin-top:16px">
+      <div class="s11-point">本地化运营</div><div class="s11-point">文化融合</div>
+      <div class="s11-point">人才本土化</div><div class="s11-point">供应链协同</div>
+    </div>
+  </div>
+
+  <!-- Scene 15: Growth (170-195s) -->
+  <div class="scene" id="s15">
+    <div style="font-size:36px;font-weight:900;color:#00FF88;margin-bottom:8px">抓住机遇 · 管控风险</div>
+    <div style="font-size:20px;color:#B0B0C0;margin-bottom:24px">出口逆势上扬，风险不断涌现</div>
+    <div class="s15-arrow-up"></div><div class="s15-bar"></div>
+    <div class="s15-stats">
+      <div class="s15-stat" style="border-color:#00FF88"><div class="st-val" style="color:#00FF88">逆势</div><div class="st-label">出口增长</div></div>
+      <div class="s15-stat" style="border-color:#FFD700"><div class="st-val" style="color:#FFD700">必备</div><div class="st-label">风险管控</div></div>
+      <div class="s15-stat" style="border-color:#FF3366"><div class="st-val" style="color:#FF3366">关键</div><div class="st-label">机遇把握</div></div>
+    </div>
+  </div>
+
+  <!-- Scene 16: Final (195-234s) -->
+  <div class="scene" id="s16">
+    <div style="font-size:36px;font-weight:900;color:#00FF88;margin-bottom:8px">抓住机遇 · 管控风险</div>
+    <div style="font-size:22px;color:#B0B0C0;margin-bottom:24px">逆势上扬 · 中国企业出海新格局</div>
+    <div class="s15-arrow-up"></div><div class="s15-bar"></div>
+    <div class="s11-points" style="margin-top:16px">
+      <div class="s11-point">出口逆势上扬</div><div class="s11-point">风险不断涌现</div>
+      <div class="s11-point">机遇与挑战并存</div>
+    </div>
+  </div>
+
+</div><!-- end content frame -->
+
+<!-- Caption area -->
+<div class="caption-area">
+  <div class="caption-text" id="captionText"></div>
+  <div class="caption-sub" id="captionSub"></div>
 </div>
 
-<div class="captions-area" id="captionsArea"></div>
+<!-- Scene dots -->
+<div class="scene-dots" id="sceneDots"></div>
 
+<!-- Host zone -->
 <div class="host-zone">
-  <div class="host-avatar">🌏</div>
-  <div class="host-name">中国企业出海风险分析</div>
+  <div class="host-avatar">出海</div>
+  <div class="host-label">中国企业出海</div>
 </div>
+
 </div><!-- end comp-root -->
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
 <script>
 const tl = gsap.timeline({ paused:true });
-const scenes = [{"start": 0, "end": 7, "title": "出海最大的敌人不是竞争对手", "sub": "政策一夜之间就变卦了", "asset": null, "img": "public/assets/oil_strait/oil_strait.png", "color": "#FF3366", "overlay": false}, {"start": 7, "end": 14, "title": "李海涛教授", "sub": "长江商学院院长 · 第十二届走出去风险发布会", "asset": null, "img": "public/assets/professor/lihaitao.jpg", "color": "#FFD700", "overlay": true, "overlay_title": "李海涛 教授", "overlay_sub": "长江商学院院长 · 金融学教授"}, {"start": 14, "end": 20, "title": "三大风险", "sub": "美国系统性对抗 · 政策突变 · 欧盟潜在风险", "asset": null, "img": "public/assets/three_risks/three_risks.png", "color": "#00FF88", "overlay": false}, {"start": 20, "end": 28, "title": "美国系统性对抗", "sub": "2026年特朗普政府系列操作 · 全球博弈", "asset": null, "img": "public/assets/us_confrontation/us_confrontation.png", "color": "#FF3366", "overlay": false}, {"start": 28, "end": 36, "title": "一带一路 · 全球南方", "sub": "委内瑞拉 · 古巴 · 霍尔木兹", "asset": null, "img": "public/assets/belt_road/belt_road.png", "color": "#00FF88", "overlay": false}, {"start": 36, "end": 50, "title": "70% – 90%", "sub": "霍尔木兹海峡航运量断崖下降", "asset": null, "img": "public/assets/oil_strait/oil_strait.png", "color": "#FFD700", "overlay": false}, {"start": 50, "end": 60, "title": "政策突变", "sub": "一夜之间政策变卦 · 真实案例", "asset": "public/assets/policy_news/policy_news_1.mp4", "img": null, "color": "#FF3366", "overlay": false}, {"start": 60, "end": 78, "title": "政策突变案例", "sub": "印尼 · 印度 · 越南 · 沙特 · 非洲", "asset": null, "img": "public/assets/five_nations/five_nations.png", "color": "#FF3366", "overlay": false}, {"start": 78, "end": 90, "title": "欧盟潜在风险", "sub": "最大贸易顺差来源 · 关税冲击", "asset": null, "img": "public/assets/eu_map/eu_map.png", "color": "#FFD700", "overlay": false}, {"start": 90, "end": 98, "title": "三大应对之道", "sub": "地缘洞察 · 合规能力 · 本地化执行", "asset": "public/assets/city_skyline/city_skyline_1.mp4", "img": null, "color": "#00FF88", "overlay": false}, {"start": 98, "end": 115, "title": "地缘洞察能力", "sub": "不能只算经济账，不算政治账", "asset": null, "img": "public/assets/world_map_bg/world_map_bg.png", "color": "#FFD700", "overlay": false}, {"start": 115, "end": 128, "title": "合规能力", "sub": "合规是门票，不是成本", "asset": null, "img": "public/assets/compliance_gate/compliance_gate.png", "color": "#00FF88", "overlay": false}, {"start": 128, "end": 145, "title": "本地化执行能力", "sub": "走进去才能走出来", "asset": "public/assets/office_work/office_work_1.mp4", "img": null, "color": "#00FF88", "overlay": false}, {"start": 145, "end": 170, "title": "走进去才能走出来", "sub": "深入当地 · 扎根当地 · 与当地共赢", "asset": null, "img": "public/assets/handshake_win/handshake_win.png", "color": "#FFD700", "overlay": false}, {"start": 170, "end": 195, "title": "抓住机遇 · 管控风险", "sub": "出口逆势上扬，风险不断涌现", "asset": "public/assets/trading_floor/trading_floor_2.mp4", "img": null, "color": "#00FF88", "overlay": false}, {"start": 195, "end": 234, "title": "抓住机遇 · 管控风险", "sub": "逆势上扬 · 中国企业出海新格局", "asset": null, "img": "public/assets/growth_arrow/growth_arrow.png", "color": "#00FF88", "overlay": false}];
 
-const frameEl = document.getElementById('videoFrame');
-const titleMain = document.getElementById('titleMain');
-const titleSub = document.getElementById('titleSub');
-const captionsEl = document.getElementById('captionsArea');
-const profOverlay = document.getElementById('profOverlay');
-const profName = document.getElementById('profName');
-const profTitle = document.getElementById('profTitle');
+// Scene definitions: start, end, caption, sub, color, sceneId
+const scenes = [
+  {start:0,  end:7,   cap:"出海最大的敌人不是竞争对手", sub:"政策一夜之间就变卦了",         color:"#FF3366", sid:"s1"},
+  {start:7,  end:14,  cap:"李海涛教授",               sub:"长江商学院院长",                 color:"#FFD700", sid:"s2"},
+  {start:14, end:20,  cap:"三大核心风险",             sub:"美国对抗 · 政策突变 · 欧盟风险", color:"#00FF88", sid:"s3"},
+  {start:20, end:28,  cap:"美国系统性对抗",           sub:"2026年特朗普政府系列操作",        color:"#FF3366", sid:"s4"},
+  {start:28, end:36,  cap:"一带一路 · 全球南方",      sub:"委内瑞拉 · 古巴 · 霍尔木兹",     color:"#00FF88", sid:"s5"},
+  {start:36, end:50,  cap:"70% – 90%",               sub:"霍尔木兹海峡航运量断崖下降",     color:"#FFD700", sid:"s6"},
+  {start:50, end:60,  cap:"政策突变",                 sub:"一夜之间政策变卦",               color:"#FF3366", sid:"s7"},
+  {start:60, end:78,  cap:"政策突变案例",             sub:"印尼 · 印度 · 越南 · 沙特 · 非洲", color:"#FF3366", sid:"s8"},
+  {start:78, end:90,  cap:"欧盟潜在风险",             sub:"最大贸易顺差来源 · 关税冲击",     color:"#FFD700", sid:"s9"},
+  {start:90, end:98,  cap:"三大应对之道",             sub:"地缘洞察 · 合规能力 · 本地化执行", color:"#00FF88", sid:"s10"},
+  {start:98, end:115, cap:"地缘洞察能力",             sub:"不能只算经济账，不算政治账",      color:"#FFD700", sid:"s11"},
+  {start:115,end:128, cap:"合规能力",                 sub:"合规是门票，不是成本",            color:"#00FF88", sid:"s12"},
+  {start:128,end:145, cap:"本地化执行能力",           sub:"走进去才能走出来",               color:"#00FF88", sid:"s13"},
+  {start:145,end:170, cap:"走进去才能走出来",         sub:"深入当地 · 扎根当地 · 与当地共赢", color:"#FFD700", sid:"s14"},
+  {start:170,end:195, cap:"抓住机遇 · 管控风险",      sub:"出口逆势上扬，风险不断涌现",      color:"#00FF88", sid:"s15"},
+  {start:195,end:234, cap:"抓住机遇 · 管控风险",      sub:"逆势上扬 · 中国企业出海新格局",   color:"#00FF88", sid:"s16"},
+];
 
+const captionText = document.getElementById('captionText');
+const captionSub = document.getElementById('captionSub');
+const dotsEl = document.getElementById('sceneDots');
+
+// Create dots
 scenes.forEach((s, i) => {
-  // Update content at scene start
-  tl.call(() => {
-    titleMain.textContent = s.title;
-    titleMain.style.color = s.color;
-    titleSub.textContent = s.sub;
-
-    // Professor overlay control
-    if (s.overlay && s.overlay_title) {
-      profName.textContent = s.overlay_title;
-      profTitle.textContent = s.overlay_sub || '';
-      profOverlay.style.opacity = '1';
-    } else {
-      profOverlay.style.opacity = '0';
-    }
-
-    if (s.asset) {
-      frameEl.innerHTML = `<video id="scene-video-${i}" src="${s.asset}" muted loop playsinline style="width:100%;height:100%;object-fit:cover;" data-start="${s.start}"></video>`;
-    } else if (s.img) {
-      frameEl.innerHTML = `<img src="${s.img}" style="width:100%;height:100%;object-fit:cover;background:radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0f 100%);">`;
-    }
-  }, null, s.start);
-
-  // Title animation with overwrite
-  tl.fromTo(titleMain, {y:20, opacity:0}, {y:0, opacity:1, duration:0.4, ease:'power2.out', overwrite:'auto'}, s.start);
-  tl.fromTo(titleSub, {y:12, opacity:0}, {y:0, opacity:1, duration:0.3, ease:'power2.out', overwrite:'auto'}, s.start+0.15);
-  tl.to(titleMain, {opacity:0, duration:0.25, overwrite:'auto'}, s.end-0.25);
-  tl.to(titleSub, {opacity:0, duration:0.25, overwrite:'auto'}, s.end-0.25);
-
-  // Caption text
-  tl.call(() => { captionsEl.textContent = s.sub; }, null, s.start);
-  tl.fromTo(captionsEl, {opacity:0}, {opacity:1, duration:0.3, overwrite:'auto'}, s.start);
-  tl.to(captionsEl, {opacity:0, duration:0.25, overwrite:'auto'}, s.end-0.25);
+  const dot = document.createElement('div');
+  dot.className = 'scene-dot';
+  dot.id = 'dot-' + i;
+  dotsEl.appendChild(dot);
 });
 
-// Audio: set initial state, HyperFrames will own playback via data-start
+// Hide all scenes initially
+document.querySelectorAll('.scene').forEach(el => el.style.opacity = '0');
+
+scenes.forEach((s, i) => {
+  const sceneEl = document.getElementById(s.sid);
+
+  tl.call(() => {
+    // Update captions
+    captionText.textContent = s.cap;
+    captionText.style.color = s.color;
+    captionSub.textContent = s.sub;
+
+    // Update dots
+    scenes.forEach((_, di) => {
+      const d = document.getElementById('dot-' + di);
+      if (d) d.className = di === i ? 'scene-dot active' : 'scene-dot';
+    });
+
+    // Show current scene, hide others
+    document.querySelectorAll('.scene').forEach(el => el.style.opacity = '0');
+    if (sceneEl) sceneEl.style.opacity = '1';
+  }, null, s.start);
+
+  // Caption animations
+  tl.fromTo(captionText, {y:15, opacity:0}, {y:0, opacity:1, duration:0.35, ease:'power2.out', overwrite:'auto'}, s.start);
+  tl.fromTo(captionSub, {y:10, opacity:0}, {y:0, opacity:1, duration:0.25, ease:'power2.out', overwrite:'auto'}, s.start + 0.1);
+  tl.to(captionText, {opacity:0, duration:0.2, overwrite:'auto'}, s.end - 0.2);
+  tl.to(captionSub, {opacity:0, duration:0.2, overwrite:'auto'}, s.end - 0.2);
+});
+
 const audio = document.getElementById('narration');
 audio.volume = 1.0;
 
-// Initial state - all hidden
-titleMain.style.opacity = '0';
-titleSub.style.opacity = '0';
-captionsEl.style.opacity = '0';
-profOverlay.style.opacity = '0';
+captionText.style.opacity = '0';
+captionSub.style.opacity = '0';
 
 window.__timelines = window.__timelines || {};
 window.__timelines['main'] = tl;
