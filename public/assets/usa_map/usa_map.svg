@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720">
+  <rect width="960" height="720" fill="#0A0A0F"/>
+  <path d="M200,200 L400,160 L550,180 L700,200 L780,250 L750,350 L650,400 L500,420 L350,400 L250,350 L180,280 Z" fill="none" stroke="#FF3366" stroke-width="3" opacity="0.6"/>
+  <path d="M200,200 L400,160 L550,180 L700,200 L780,250" fill="none" stroke="#FF3366" stroke-width="2" opacity="0.4"/>
+  <text x="480" y="300" text-anchor="middle" fill="#FF3366" font-size="48" font-weight="900" font-family="sans-serif" opacity="0.8">USA</text>
+  <line x1="300" y1="420" x2="650" y2="420" stroke="#FF3366" stroke-width="1" stroke-dasharray="5,5" opacity="0.3"/>
+  <text x="480" y="460" text-anchor="middle" fill="#FF3366" font-size="20" font-family="sans-serif">系统性对抗 · 2026</text>
+</svg>

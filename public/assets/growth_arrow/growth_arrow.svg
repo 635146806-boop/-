@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720">
+  <rect width="960" height="720" fill="#0A0A0F"/>
+  <polyline points="120,600 240,500 360,520 480,380 600,350 720,240 840,160" fill="none" stroke="#00FF88" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="240" cy="500" r="10" fill="#00FF88"/>
+  <circle cx="480" cy="380" r="10" fill="#00FF88"/>
+  <circle cx="720" cy="240" r="10" fill="#00FF88"/>
+  <circle cx="840" cy="160" r="14" fill="#00FF88"/>
+  <text x="480" y="140" text-anchor="middle" fill="#00FF88" font-size="36" font-weight="900" font-family="sans-serif">抓住机遇 · 管控风险</text>
+  <text x="480" y="180" text-anchor="middle" fill="#B0B0C0" font-size="18" font-family="sans-serif">出口逆势上扬 · 风险不断涌现</text>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720">
+  <rect width="960" height="720" fill="#0A0A0F"/>
+  <path d="M150,360 Q300,280 450,320 T750,300 Q850,320 900,340" fill="none" stroke="#00FF88" stroke-width="4" opacity="0.7"/>
+  <circle cx="150" cy="360" r="15" fill="#00FF88"/>
+  <text x="150" y="340" text-anchor="middle" fill="#00FF88" font-size="16" font-family="sans-serif">中国</text>
+  <circle cx="350" cy="310" r="10" fill="#00FF88" opacity="0.6"/>
+  <text x="350" y="295" text-anchor="middle" fill="#FFF" font-size="13" font-family="sans-serif">东南亚</text>
+  <circle cx="500" cy="330" r="10" fill="#00FF88" opacity="0.6"/>
+  <text x="500" y="315" text-anchor="middle" fill="#FFF" font-size="13" font-family="sans-serif">中东</text>
+  <circle cx="650" cy="310" r="10" fill="#00FF88" opacity="0.6"/>
+  <text x="650" y="295" text-anchor="middle" fill="#FFF" font-size="13" font-family="sans-serif">非洲</text>
+  <circle cx="800" cy="315" r="10" fill="#00FF88" opacity="0.6"/>
+  <text x="800" y="295" text-anchor="middle" fill="#FFF" font-size="13" font-family="sans-serif">拉美</text>
+  <text x="480" y="450" text-anchor="middle" fill="#00FF88" font-size="28" font-weight="900" font-family="sans-serif">一带一路 · 全球南方</text>
+</svg>

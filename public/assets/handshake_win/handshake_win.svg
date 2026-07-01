@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720">
+  <rect width="960" height="720" fill="#0A0A0F"/>
+  <circle cx="480" cy="280" r="120" fill="none" stroke="#00FF88" stroke-width="3" opacity="0.4"/>
+  <text x="480" y="260" text-anchor="middle" fill="#00FF88" font-size="64" font-family="sans-serif">🤝</text>
+  <text x="480" y="440" text-anchor="middle" fill="#00FF88" font-size="28" font-weight="900" font-family="sans-serif">走进去才能走出来</text>
+  <text x="480" y="490" text-anchor="middle" fill="#FFF" font-size="20" font-family="sans-serif">深入当地 · 扎根当地 · 与当地共赢</text>
+  <text x="480" y="540" text-anchor="middle" fill="#B0B0C0" font-size="16" font-family="sans-serif">— 李海涛教授</text>
+</svg>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080, height=1440">
+<title>出海风险分析 V6</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0A0A0F; font-family:sans-serif; overflow:hidden; }
+
+  /* Root composition wrapper */
+  .comp-root { position:relative; width:1080px; height:1440px; overflow:hidden; color:#FFF; }
+
+  /* Green grid background */
+  .bg-grid { position:absolute; inset:0; z-index:0;
+    background-image:linear-gradient(rgba(0,255,136,0.06) 1px, transparent 1px),linear-gradient(90deg, rgba(0,255,136,0.06) 1px, transparent 1px);
+    background-size:60px 60px; }
+
+  /* Scanline overlay for tech feel */
+  .scanline { position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px); }
+
+  /* Video frame with green border */
+  .video-frame { position:absolute; top:70px; left:50px; right:50px; height:700px;
+    border:2px solid #00FF88; border-radius:6px; overflow:hidden; z-index:10; background:#000;
+    box-shadow:0 0 30px rgba(0,255,136,0.12), inset 0 0 30px rgba(0,255,136,0.06); }
+
+  .video-frame video, .video-frame img { width:100%; height:100%; object-fit:cover; }
+
+  /* Professor overlay */
+  .prof-overlay { position:absolute; top:70px; left:50px; right:50px; height:700px; z-index:11; pointer-events:none;
+    display:flex; flex-direction:column; justify-content:flex-end; align-items:center; padding-bottom:30px;
+    background:linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%, transparent 100%); }
+  .prof-overlay .prof-name { font-size:36px; font-weight:900; color:#FFD700; text-shadow:0 2px 12px rgba(0,0,0,0.8); }
+  .prof-overlay .prof-title { font-size:22px; font-weight:600; color:#FFF; margin-top:6px; text-shadow:0 2px 8px rgba(0,0,0,0.8); }
+
+  /* Title area */
+  .title-area { position:absolute; top:790px; left:50px; right:50px; z-index:20; text-align:center; }
+  .title-main { font-size:48px; font-weight:900; line-height:1.2; text-shadow:0 0 40px rgba(0,255,136,0.3); }
+  .title-sub { font-size:28px; font-weight:600; color:#B0B0C0; margin-top:10px; }
+
+  /* Captions area */
+  .captions-area { position:absolute; bottom:210px; left:50px; right:50px; z-index:30; text-align:center; font-size:34px; font-weight:700; color:#FFF; text-shadow:0 2px 8px rgba(0,0,0,0.9); }
+
+  /* Host zone at bottom */
+  .host-zone { position:absolute; bottom:0; left:0; right:0; height:170px; z-index:40;
+    background:linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+    border-top:1px solid rgba(0,255,136,0.12);
+    display:flex; align-items:center; justify-content:center; gap:16px; }
+  .host-avatar { width:90px; height:90px; border-radius:50%; border:3px solid #00FF88;
+    box-shadow:0 0 20px rgba(0,255,136,0.3); background:rgba(0,255,136,0.08);
+    display:flex; align-items:center; justify-content:center; font-size:36px; }
+  .host-name { font-size:24px; font-weight:700; color:#00FF88; }
+
+  /* Corner decorations */
+  .corner-tl, .corner-tr, .corner-bl, .corner-br { position:absolute; width:20px; height:20px; z-index:15; pointer-events:none; }
+  .corner-tl { top:70px; left:50px; border-top:2px solid #00FF88; border-left:2px solid #00FF88; }
+  .corner-tr { top:70px; right:50px; border-top:2px solid #00FF88; border-right:2px solid #00FF88; }
+  .corner-bl { top:770px; left:50px; border-bottom:2px solid #00FF88; border-left:2px solid #00FF88; }
+  .corner-br { top:770px; right:50px; border-bottom:2px solid #00FF88; border-right:2px solid #00FF88; }
+</style>
+</head>
+<body>
+<div class="comp-root" data-composition-id="main" data-width="1080" data-height="1440" data-start="0" data-duration="234">
+<div class="bg-grid"></div>
+<div class="scanline"></div>
+
+<audio id="narration" src="public/口播音频.mp3" preload="auto" data-start="0"></audio>
+
+<div class="video-frame" id="videoFrame"></div>
+
+<!-- Professor overlay (hidden by default) -->
+<div class="prof-overlay" id="profOverlay" style="opacity:0;">
+  <div class="prof-name" id="profName"></div>
+  <div class="prof-title" id="profTitle"></div>
+</div>
+
+<!-- Corner accents -->
+<div class="corner-tl"></div>
+<div class="corner-tr"></div>
+<div class="corner-bl"></div>
+<div class="corner-br"></div>
+
+<div class="title-area">
+  <div class="title-main" id="titleMain"></div>
+  <div class="title-sub" id="titleSub"></div>
+</div>
+
+<div class="captions-area" id="captionsArea"></div>
+
+<div class="host-zone">
+  <div class="host-avatar">🌏</div>
+  <div class="host-name">中国企业出海风险分析</div>
+</div>
+</div><!-- end comp-root -->
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script>
+const tl = gsap.timeline({ paused:true });
+const scenes = [{"start": 0, "end": 7, "title": "出海最大的敌人不是竞争对手", "sub": "政策一夜之间就变卦了", "asset": null, "img": "public/assets/oil_strait/oil_strait.png", "color": "#FF3366", "overlay": false}, {"start": 7, "end": 14, "title": "李海涛教授", "sub": "长江商学院院长 · 第十二届走出去风险发布会", "asset": null, "img": "public/assets/professor/lihaitao.jpg", "color": "#FFD700", "overlay": true, "overlay_title": "李海涛 教授", "overlay_sub": "长江商学院院长 · 金融学教授"}, {"start": 14, "end": 20, "title": "三大风险", "sub": "美国系统性对抗 · 政策突变 · 欧盟潜在风险", "asset": null, "img": "public/assets/three_risks/three_risks.png", "color": "#00FF88", "overlay": false}, {"start": 20, "end": 28, "title": "美国系统性对抗", "sub": "2026年特朗普政府系列操作 · 全球博弈", "asset": null, "img": "public/assets/us_confrontation/us_confrontation.png", "color": "#FF3366", "overlay": false}, {"start": 28, "end": 36, "title": "一带一路 · 全球南方", "sub": "委内瑞拉 · 古巴 · 霍尔木兹", "asset": null, "img": "public/assets/belt_road/belt_road.png", "color": "#00FF88", "overlay": false}, {"start": 36, "end": 50, "title": "70% – 90%", "sub": "霍尔木兹海峡航运量断崖下降", "asset": null, "img": "public/assets/oil_strait/oil_strait.png", "color": "#FFD700", "overlay": false}, {"start": 50, "end": 60, "title": "政策突变", "sub": "一夜之间政策变卦 · 真实案例", "asset": "public/assets/policy_news/policy_news_1.mp4", "img": null, "color": "#FF3366", "overlay": false}, {"start": 60, "end": 78, "title": "政策突变案例", "sub": "印尼 · 印度 · 越南 · 沙特 · 非洲", "asset": null, "img": "public/assets/five_nations/five_nations.png", "color": "#FF3366", "overlay": false}, {"start": 78, "end": 90, "title": "欧盟潜在风险", "sub": "最大贸易顺差来源 · 关税冲击", "asset": null, "img": "public/assets/eu_map/eu_map.png", "color": "#FFD700", "overlay": false}, {"start": 90, "end": 98, "title": "三大应对之道", "sub": "地缘洞察 · 合规能力 · 本地化执行", "asset": "public/assets/city_skyline/city_skyline_1.mp4", "img": null, "color": "#00FF88", "overlay": false}, {"start": 98, "end": 115, "title": "地缘洞察能力", "sub": "不能只算经济账，不算政治账", "asset": null, "img": "public/assets/world_map_bg/world_map_bg.png", "color": "#FFD700", "overlay": false}, {"start": 115, "end": 128, "title": "合规能力", "sub": "合规是门票，不是成本", "asset": null, "img": "public/assets/compliance_gate/compliance_gate.png", "color": "#00FF88", "overlay": false}, {"start": 128, "end": 145, "title": "本地化执行能力", "sub": "走进去才能走出来", "asset": "public/assets/office_work/office_work_1.mp4", "img": null, "color": "#00FF88", "overlay": false}, {"start": 145, "end": 170, "title": "走进去才能走出来", "sub": "深入当地 · 扎根当地 · 与当地共赢", "asset": null, "img": "public/assets/handshake_win/handshake_win.png", "color": "#FFD700", "overlay": false}, {"start": 170, "end": 195, "title": "抓住机遇 · 管控风险", "sub": "出口逆势上扬，风险不断涌现", "asset": "public/assets/trading_floor/trading_floor_2.mp4", "img": null, "color": "#00FF88", "overlay": false}, {"start": 195, "end": 234, "title": "抓住机遇 · 管控风险", "sub": "逆势上扬 · 中国企业出海新格局", "asset": null, "img": "public/assets/growth_arrow/growth_arrow.png", "color": "#00FF88", "overlay": false}];
+
+const frameEl = document.getElementById('videoFrame');
+const titleMain = document.getElementById('titleMain');
+const titleSub = document.getElementById('titleSub');
+const captionsEl = document.getElementById('captionsArea');
+const profOverlay = document.getElementById('profOverlay');
+const profName = document.getElementById('profName');
+const profTitle = document.getElementById('profTitle');
+
+scenes.forEach((s, i) => {
+  // Update content at scene start
+  tl.call(() => {
+    titleMain.textContent = s.title;
+    titleMain.style.color = s.color;
+    titleSub.textContent = s.sub;
+
+    // Professor overlay control
+    if (s.overlay && s.overlay_title) {
+      profName.textContent = s.overlay_title;
+      profTitle.textContent = s.overlay_sub || '';
+      profOverlay.style.opacity = '1';
+    } else {
+      profOverlay.style.opacity = '0';
+    }
+
+    if (s.asset) {
+      frameEl.innerHTML = `<video id="scene-video-${i}" src="${s.asset}" muted loop playsinline style="width:100%;height:100%;object-fit:cover;" data-start="${s.start}"></video>`;
+    } else if (s.img) {
+      frameEl.innerHTML = `<img src="${s.img}" style="width:100%;height:100%;object-fit:cover;background:radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0f 100%);">`;
+    }
+  }, null, s.start);
+
+  // Title animation with overwrite
+  tl.fromTo(titleMain, {y:20, opacity:0}, {y:0, opacity:1, duration:0.4, ease:'power2.out', overwrite:'auto'}, s.start);
+  tl.fromTo(titleSub, {y:12, opacity:0}, {y:0, opacity:1, duration:0.3, ease:'power2.out', overwrite:'auto'}, s.start+0.15);
+  tl.to(titleMain, {opacity:0, duration:0.25, overwrite:'auto'}, s.end-0.25);
+  tl.to(titleSub, {opacity:0, duration:0.25, overwrite:'auto'}, s.end-0.25);
+
+  // Caption text
+  tl.call(() => { captionsEl.textContent = s.sub; }, null, s.start);
+  tl.fromTo(captionsEl, {opacity:0}, {opacity:1, duration:0.3, overwrite:'auto'}, s.start);
+  tl.to(captionsEl, {opacity:0, duration:0.25, overwrite:'auto'}, s.end-0.25);
+});
+
+// Audio: set initial state, HyperFrames will own playback via data-start
+const audio = document.getElementById('narration');
+audio.volume = 1.0;
+
+// Initial state - all hidden
+titleMain.style.opacity = '0';
+titleSub.style.opacity = '0';
+captionsEl.style.opacity = '0';
+profOverlay.style.opacity = '0';
+
+window.__timelines = window.__timelines || {};
+window.__timelines['main'] = tl;
+</script>
+</body>
+</html>

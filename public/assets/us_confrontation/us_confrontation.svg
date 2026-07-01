@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="700" viewBox="0 0 980 700">
+  <defs>
+    <linearGradient id="usBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a1a"/>
+      <stop offset="100%" style="stop-color:#1a1010"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="980" height="700" fill="#0A0A0F"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="980" height="60" fill="#1a1020" opacity="0.9"/>
+  <text x="490" y="40" text-anchor="middle" font-family="sans-serif" font-size="26" font-weight="900" fill="#FF3366" filter="url(#glow)">⚡ 美国系统性对抗 — 全球博弈格局</text>
+
+  <!-- US Center -->
+  <rect x="340" y="80" width="300" height="200" rx="10" fill="url(#usBg)" stroke="#FF3366" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="490" y="120" text-anchor="middle" font-family="sans-serif" font-size="48">🇺🇸</text>
+  <text x="490" y="160" text-anchor="middle" font-family="sans-serif" font-size="28" font-weight="900" fill="#FFFFFF">美国</text>
+  <text x="490" y="190" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#FF3366" font-weight="700">系统性对抗中心</text>
+  <text x="490" y="220" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#9090A0">关税54% · 技术封锁 · 经济脱钩</text>
+  <text x="490" y="250" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#9090A0">移民驱逐 · 供应链重构</text>
+
+  <!-- VS lines from US to targets -->
+  <!-- Line US -> 委内瑞拉 -->
+  <line x1="490" y1="280" x2="150" y2="360" stroke="#FF3366" stroke-width="1.5" stroke-dasharray="6,3" opacity="0.6"/>
+  <!-- Line US -> 古巴 -->
+  <line x1="490" y1="280" x2="490" y2="360" stroke="#FF3366" stroke-width="1.5" stroke-dasharray="6,3" opacity="0.6"/>
+  <!-- Line US -> 霍尔木兹 -->
+  <line x1="490" y1="280" x2="830" y2="360" stroke="#FF3366" stroke-width="1.5" stroke-dasharray="6,3" opacity="0.6"/>
+
+  <!-- VS badges -->
+  <rect x="205" y="290" width="80" height="28" rx="14" fill="#FF3366"/>
+  <text x="245" y="309" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="900" fill="#FFF">VS</text>
+
+  <rect x="450" y="290" width="80" height="28" rx="14" fill="#FF3366"/>
+  <text x="490" y="309" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="900" fill="#FFF">VS</text>
+
+  <rect x="695" y="290" width="80" height="28" rx="14" fill="#FF3366"/>
+  <text x="735" y="309" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="900" fill="#FFF">VS</text>
+
+  <!-- Target 1: 委内瑞拉 -->
+  <rect x="30" y="360" width="240" height="160" rx="10" fill="#0a0a1a" stroke="#FFD700" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="150" y="400" text-anchor="middle" font-family="sans-serif" font-size="36">🇻🇪</text>
+  <text x="150" y="435" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="900" fill="#FFD700">委内瑞拉</text>
+  <text x="150" y="465" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#A0A0B0">石油制裁 · 金融封锁</text>
+  <text x="150" y="490" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#A0A0B0">中国企业转口枢纽</text>
+
+  <!-- Target 2: 古巴 -->
+  <rect x="370" y="360" width="240" height="160" rx="10" fill="#0a0a1a" stroke="#FFD700" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="490" y="400" text-anchor="middle" font-family="sans-serif" font-size="36">🇨🇺</text>
+  <text x="490" y="435" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="900" fill="#FFD700">古巴</text>
+  <text x="490" y="465" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#A0A0B0">长期禁运 · 旅游限制</text>
+  <text x="490" y="490" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#A0A0B0">中古经贸合作受阻</text>
+
+  <!-- Target 3: 霍尔木兹海峡 -->
+  <rect x="710" y="360" width="240" height="160" rx="10" fill="#0a0a1a" stroke="#FFD700" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="830" y="400" text-anchor="middle" font-family="sans-serif" font-size="36">🛢️</text>
+  <text x="830" y="435" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="900" fill="#FFD700">霍尔木兹</text>
+  <text x="830" y="465" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#A0A0B0">军事威慑 · 航运威胁</text>
+  <text x="830" y="490" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#A0A0B0">70%-90% 航运下降</text>
+
+  <!-- Impact bar -->
+  <rect x="60" y="545" width="860" height="50" rx="8" fill="#1a1020" stroke="#FF3366" stroke-width="1"/>
+  <text x="490" y="576" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#FF3366">→ 中国企业需重新评估全球供应链布局，寻找替代路径与区域合作新方案</text>
+
+  <!-- Bottom stats -->
+  <rect x="60" y="610" width="280" height="70" rx="6" fill="#0d0d1a"/>
+  <text x="200" y="638" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#9090A0">受影响国家</text>
+  <text x="200" y="668" text-anchor="middle" font-family="sans-serif" font-size="28" font-weight="900" fill="#FF3366">20+</text>
+
+  <rect x="350" y="610" width="280" height="70" rx="6" fill="#0d0d1a"/>
+  <text x="490" y="638" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#9090A0">关税增加幅度</text>
+  <text x="490" y="668" text-anchor="middle" font-family="sans-serif" font-size="28" font-weight="900" fill="#FFD700">54%</text>
+
+  <rect x="640" y="610" width="280" height="70" rx="6" fill="#0d0d1a"/>
+  <text x="780" y="638" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#9090A0">航运下降</text>
+  <text x="780" y="668" text-anchor="middle" font-family="sans-serif" font-size="28" font-weight="900" fill="#00FF88">70-90%</text>
+</svg>

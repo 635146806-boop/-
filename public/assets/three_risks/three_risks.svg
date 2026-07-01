@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="700" viewBox="0 0 980 700">
+  <defs>
+    <linearGradient id="risk1Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a0a0a"/>
+      <stop offset="100%" style="stop-color:#2d1010"/>
+    </linearGradient>
+    <linearGradient id="risk2Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a1a"/>
+      <stop offset="100%" style="stop-color:#10102d"/>
+    </linearGradient>
+    <linearGradient id="risk3Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a1a0a"/>
+      <stop offset="100%" style="stop-color:#102d10"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="980" height="700" fill="#0A0A0F"/>
+
+  <!-- Title -->
+  <text x="490" y="55" text-anchor="middle" font-family="sans-serif" font-size="40" font-weight="900" fill="#FFFFFF" filter="url(#glow)">中国企业出海 · 三大核心风险</text>
+
+  <!-- Card 1: 美国系统性对抗 -->
+  <rect x="40" y="85" width="280" height="570" rx="12" fill="url(#risk1Grad)" stroke="#FF3366" stroke-width="2"/>
+  <rect x="40" y="85" width="280" height="8" rx="4" fill="#FF3366"/>
+  <text x="180" y="130" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#FF3366" font-weight="700">RISK 01</text>
+  <text x="180" y="165" text-anchor="middle" font-family="sans-serif" font-size="30" font-weight="900" fill="#FFFFFF">🇺🇸 美国</text>
+  <text x="180" y="195" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="900" fill="#FF3366">系统性对抗</text>
+  <line x1="80" y1="215" x2="280" y2="215" stroke="#FF3366" stroke-width="0.5" opacity="0.3"/>
+  <text x="180" y="255" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#E0E0E0" font-weight="600">特朗普2026新政</text>
+  <text x="180" y="290" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">• 对华关税升至 54%</text>
+  <text x="180" y="320" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">• 300万非法移民驱逐</text>
+  <text x="180" y="350" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">• 中美经济脱钩加速</text>
+  <text x="180" y="380" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">• 技术封锁全面升级</text>
+  <text x="180" y="430" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">→ 转口贸易路径</text>
+  <text x="180" y="460" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">→ 全球南方市场</text>
+  <text x="180" y="490" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">→ 区域供应链重构</text>
+
+  <!-- Card 2: 政策突变 -->
+  <rect x="350" y="85" width="280" height="570" rx="12" fill="url(#risk2Grad)" stroke="#FFD700" stroke-width="2"/>
+  <rect x="350" y="85" width="280" height="8" rx="4" fill="#FFD700"/>
+  <text x="490" y="130" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#FFD700" font-weight="700">RISK 02</text>
+  <text x="490" y="165" text-anchor="middle" font-family="sans-serif" font-size="30" font-weight="900" fill="#FFFFFF">⚠️ 政策</text>
+  <text x="490" y="195" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="900" fill="#FFD700">突变风险</text>
+  <line x1="390" y1="215" x2="590" y2="215" stroke="#FFD700" stroke-width="0.5" opacity="0.3"/>
+  <text x="490" y="255" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#E0E0E0" font-weight="600">一夜之间政策变卦</text>
+  <text x="490" y="290" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">• 印尼镍矿出口禁令</text>
+  <text x="490" y="320" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">• 印度封禁中国APP</text>
+  <text x="490" y="350" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">• 越南反倾销调查</text>
+  <text x="490" y="380" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">• 沙特本地化要求</text>
+  <text x="490" y="430" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">→ 提前政治尽调</text>
+  <text x="490" y="460" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">→ 多元化布局</text>
+  <text x="490" y="490" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">→ 应急预案机制</text>
+
+  <!-- Card 3: 欧盟潜在风险 -->
+  <rect x="660" y="85" width="280" height="570" rx="12" fill="url(#risk3Grad)" stroke="#00FF88" stroke-width="2"/>
+  <rect x="660" y="85" width="280" height="8" rx="4" fill="#00FF88"/>
+  <text x="800" y="130" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#00FF88" font-weight="700">RISK 03</text>
+  <text x="800" y="165" text-anchor="middle" font-family="sans-serif" font-size="30" font-weight="900" fill="#FFFFFF">🇪🇺 欧盟</text>
+  <text x="800" y="195" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="900" fill="#00FF88">潜在风险</text>
+  <line x1="700" y1="215" x2="900" y2="215" stroke="#00FF88" stroke-width="0.5" opacity="0.3"/>
+  <text x="800" y="255" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#E0E0E0" font-weight="600">最大顺差来源</text>
+  <text x="800" y="290" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">• 中欧贸易顺差巨大</text>
+  <text x="800" y="320" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">• 反补贴调查启动</text>
+  <text x="800" y="350" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">• 碳边境调节机制</text>
+  <text x="800" y="380" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">• 新能源车关税</text>
+  <text x="800" y="430" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">→ 海外建厂策略</text>
+  <text x="800" y="460" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">→ 绿色合规体系</text>
+  <text x="800" y="490" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#A0A0B0">→ 品牌本土运营</text>
+
+  <!-- Bottom note -->
+  <text x="490" y="680" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#606070">数据来源：第十二届中国企业走出去风险发布会 · 李海涛教授演讲</text>
+</svg>

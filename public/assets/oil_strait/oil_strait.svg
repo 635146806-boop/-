@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720">
+  <rect width="960" height="720" fill="#0A0A0F"/>
+  <path d="M200,400 Q300,300 480,350 Q600,380 750,340" fill="none" stroke="#FFD700" stroke-width="2" opacity="0.4"/>
+  <rect x="400" y="310" width="160" height="80" rx="4" fill="none" stroke="#FF3366" stroke-width="3"/>
+  <text x="480" y="340" text-anchor="middle" fill="#FF3366" font-size="18" font-weight="700" font-family="sans-serif">霍尔木兹</text>
+  <text x="480" y="370" text-anchor="middle" fill="#FF3366" font-size="14" font-family="sans-serif">海峡</text>
+  <text x="480" y="240" text-anchor="middle" fill="#FFD700" font-size="72" font-weight="900" font-family="sans-serif">70%–90%</text>
+  <text x="480" y="520" text-anchor="middle" fill="#FFF" font-size="24" font-family="sans-serif">航运量断崖下降</text>
+  <text x="480" y="560" text-anchor="middle" fill="#B0B0C0" font-size="16" font-family="sans-serif">全球20%原油运输通道 · 事实性关闭</text>
+</svg>

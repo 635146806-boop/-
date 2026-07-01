@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720">
+  <rect width="960" height="720" fill="#0A0A0F"/>
+  <circle cx="480" cy="360" r="300" fill="none" stroke="#00FF88" stroke-width="1" opacity="0.15"/>
+  <circle cx="480" cy="360" r="200" fill="none" stroke="#00FF88" stroke-width="0.5" opacity="0.1"/>
+  <line x1="0" y1="360" x2="960" y2="360" stroke="#00FF88" stroke-width="0.5" opacity="0.1"/>
+  <line x1="480" y1="0" x2="480" y2="720" stroke="#00FF88" stroke-width="0.5" opacity="0.1"/>
+  <path d="M200,280 Q300,200 400,260 T600,250 Q700,280 800,260" fill="none" stroke="#00FF88" stroke-width="2" opacity="0.3"/>
+  <path d="M150,380 Q250,340 350,390 T550,370 Q650,400 750,380" fill="none" stroke="#00FF88" stroke-width="2" opacity="0.3"/>
+  <path d="M180,480 Q280,440 380,490 T580,470 Q680,500 780,480" fill="none" stroke="#00FF88" stroke-width="2" opacity="0.3"/>
+  <circle cx="680" cy="260" r="30" fill="none" stroke="#FF3366" stroke-width="2" opacity="0.5"/>
+  <text x="680" y="255" text-anchor="middle" fill="#FF3366" font-size="14" font-family="sans-serif">美国</text>
+  <circle cx="500" cy="310" r="20" fill="none" stroke="#FFD700" stroke-width="2" opacity="0.5"/>
+  <text x="500" y="305" text-anchor="middle" fill="#FFD700" font-size="12" font-family="sans-serif">欧盟</text>
+  <circle cx="520" cy="400" r="15" fill="none" stroke="#00FF88" stroke-width="2" opacity="0.5"/>
+  <text x="520" y="395" text-anchor="middle" fill="#00FF88" font-size="12" font-family="sans-serif">中国</text>
+</svg>

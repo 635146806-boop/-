@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720">
+  <rect width="960" height="720" fill="#0A0A0F"/>
+  <g transform="translate(160,120)">
+    <rect width="180" height="160" rx="8" fill="none" stroke="#FF3366" stroke-width="2" opacity="0.6"/>
+    <text x="90" y="60" text-anchor="middle" fill="#FFF" font-size="36" font-family="sans-serif">🇮🇩</text>
+    <text x="90" y="100" text-anchor="middle" fill="#FFF" font-size="20" font-weight="700" font-family="sans-serif">印尼</text>
+    <text x="90" y="130" text-anchor="middle" fill="#FF3366" font-size="14" font-family="sans-serif">税费 · 配额</text>
+  </g>
+  <g transform="translate(390,120)">
+    <rect width="180" height="160" rx="8" fill="none" stroke="#FF3366" stroke-width="2" opacity="0.6"/>
+    <text x="90" y="60" text-anchor="middle" fill="#FFF" font-size="36" font-family="sans-serif">🇮🇳</text>
+    <text x="90" y="100" text-anchor="middle" fill="#FFF" font-size="20" font-weight="700" font-family="sans-serif">印度</text>
+    <text x="90" y="130" text-anchor="middle" fill="#FF3366" font-size="14" font-family="sans-serif">审查 · 限制</text>
+  </g>
+  <g transform="translate(620,120)">
+    <rect width="180" height="160" rx="8" fill="none" stroke="#FF3366" stroke-width="2" opacity="0.6"/>
+    <text x="90" y="60" text-anchor="middle" fill="#FFF" font-size="36" font-family="sans-serif">🇻🇳</text>
+    <text x="90" y="100" text-anchor="middle" fill="#FFF" font-size="20" font-weight="700" font-family="sans-serif">越南</text>
+    <text x="90" y="130" text-anchor="middle" fill="#FF3366" font-size="14" font-family="sans-serif">自主产业</text>
+  </g>
+  <g transform="translate(270,350)">
+    <rect width="180" height="160" rx="8" fill="none" stroke="#FF3366" stroke-width="2" opacity="0.6"/>
+    <text x="90" y="60" text-anchor="middle" fill="#FFF" font-size="36" font-family="sans-serif">🇸🇦</text>
+    <text x="90" y="100" text-anchor="middle" fill="#FFF" font-size="20" font-weight="700" font-family="sans-serif">沙特</text>
+    <text x="90" y="130" text-anchor="middle" fill="#FF3366" font-size="14" font-family="sans-serif">本土化</text>
+  </g>
+  <g transform="translate(510,350)">
+    <rect width="180" height="160" rx="8" fill="none" stroke="#FF3366" stroke-width="2" opacity="0.6"/>
+    <text x="90" y="60" text-anchor="middle" fill="#FFF" font-size="36" font-family="sans-serif">🌍</text>
+    <text x="90" y="100" text-anchor="middle" fill="#FFF" font-size="20" font-weight="700" font-family="sans-serif">非洲</text>
+    <text x="90" y="130" text-anchor="middle" fill="#FF3366" font-size="14" font-family="sans-serif">查封 · 暂停</text>
+  </g>
+  <text x="480" y="600" text-anchor="middle" fill="#FF3366" font-size="24" font-weight="700" font-family="sans-serif">政策突变案例</text>
+</svg>
