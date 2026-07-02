@@ -10,190 +10,224 @@
 
   .comp-root { position:relative; width:720px; height:1280px; overflow:hidden; color:#FFF; }
 
-  /* ===== BACKGROUND: black + green dot grid ===== */
+  /* Background: pure black + subtle green dot grid */
   .bg { position:absolute; inset:0; z-index:0; background:#000;
-    background-image: radial-gradient(circle, rgba(0,255,136,0.18) 1px, transparent 1.5px);
-    background-size: 40px 40px;
+    background-image: radial-gradient(circle, rgba(0,255,136,0.12) 0.8px, transparent 1px);
+    background-size: 36px 36px;
   }
 
-  /* ===== TOP BAR ===== */
-  .top-bar { position:absolute; top:16px; left:24px; right:24px; z-index:50;
+  /* Top bar - minimal, no border */
+  .top-bar { position:absolute; top:20px; left:30px; right:30px; z-index:50;
     display:flex; justify-content:space-between; align-items:center; }
-  .top-title { font-size:14px; font-weight:700; color:#00FF88; letter-spacing:1px; }
-  .top-tag { font-size:11px; font-weight:600; color:#FFF; background:rgba(0,255,136,0.12);
-    padding:3px 10px; border-radius:10px; border:1px solid rgba(0,255,136,0.2); }
+  .top-title { font-size:13px; font-weight:700; color:rgba(0,255,136,0.7); letter-spacing:2px; }
+  .top-tag { font-size:10px; font-weight:600; color:rgba(255,255,255,0.5); }
 
-  /* ===== CONTENT FRAME ===== */
-  .frame { position:absolute; top:60px; left:20px; right:20px; height:560px;
-    border:2px solid #00FF88; border-radius:4px; overflow:hidden; z-index:10;
-    background:#000; box-shadow:0 0 15px rgba(0,255,136,0.25); }
+  /* Content area - no border, just space */
+  .frame { position:absolute; top:70px; left:30px; right:30px; height:560px;
+    overflow:hidden; z-index:10; }
 
   /* Scene containers */
   .scene { position:absolute; inset:0; display:flex;
     flex-direction:column; align-items:center; justify-content:center; }
 
-  /* ===== CAPTION AREA ===== */
-  .caption-wrap { position:absolute; top:640px; left:20px; right:20px; z-index:20; }
-  .caption-bg { background:rgba(0,0,0,0.75); border-radius:8px; padding:18px 24px;
-    text-align:center; border:1px solid rgba(255,255,255,0.08); }
-  .caption-text { font-size:32px; font-weight:900; color:#FFF; line-height:1.3;
-    text-shadow:0 1px 4px rgba(0,0,0,0.8); }
-  .caption-sub { font-size:20px; font-weight:600; color:#B0B0C0; margin-top:8px;
-    text-shadow:0 1px 3px rgba(0,0,0,0.8); }
+  /* Caption area - dark pill, no border */
+  .caption-wrap { position:absolute; top:650px; left:30px; right:30px; z-index:20; }
+  .caption-bg { background:rgba(0,0,0,0.6); border-radius:16px; padding:20px 28px; text-align:center; }
+  .caption-text { font-size:34px; font-weight:900; color:#FFF; line-height:1.3; }
+  .caption-sub { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-top:10px; }
 
-  /* ===== HOST AVATAR (bottom) ===== */
-  .host-zone { position:absolute; bottom:30px; left:0; right:0; z-index:30;
+  /* Host zone */
+  .host-zone { position:absolute; bottom:35px; left:0; right:0; z-index:30;
     display:flex; flex-direction:column; align-items:center; gap:6px; }
-  .host-avatar { width:80px; height:80px; border-radius:50%; border:3px solid #00FF88;
-    box-shadow:0 0 20px rgba(0,255,136,0.4); background:rgba(0,255,136,0.1);
-    display:flex; align-items:center; justify-content:center; font-size:13px;
-    color:#00FF88; font-weight:700; overflow:hidden; }
-  .host-avatar img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
-  .host-label { font-size:13px; font-weight:700; color:#00FF88; }
+  .host-avatar { width:72px; height:72px; border-radius:50%; 
+    box-shadow:0 0 24px rgba(0,255,136,0.35);
+    background:rgba(0,255,136,0.08);
+    display:flex; align-items:center; justify-content:center; font-size:12px;
+    color:rgba(0,255,136,0.6); font-weight:700; overflow:hidden; }
+  .host-label { font-size:12px; font-weight:600; color:rgba(0,255,136,0.4); }
 
-  /* ===== SCENE STYLES ===== */
+  /* ===== SCENE STYLES - no borders, no lines ===== */
 
-  /* Scene 1: Opening - big numbers */
-  .s1-num { font-size:120px; font-weight:900; color:#FFD700; line-height:1; }
+  /* Scene 1: Opening */
+  .s1-num { font-size:130px; font-weight:900; color:#FFD700; line-height:1;
+    text-shadow:0 0 60px rgba(255,215,0,0.4); letter-spacing:-4px; }
   .s1-arrow { width:0; height:0; border-left:30px solid transparent;
-    border-right:30px solid transparent; border-top:50px solid #FF3366; margin:16px 0; }
-  .s1-bar { width:40px; height:70px; background:#FF3366; }
-  .s1-label { font-size:26px; font-weight:700; color:#FFF; margin-top:16px; }
-  .s1-sub { font-size:22px; color:#FF3366; font-weight:700; margin-top:6px; }
+    border-right:30px solid transparent; border-top:50px solid #FF3366; margin:14px 0;
+    filter:drop-shadow(0 0 20px rgba(255,51,102,0.5)); }
+  .s1-bar { width:36px; height:60px; background:#FF3366;
+    box-shadow:0 0 30px rgba(255,51,102,0.4); }
+  .s1-label { font-size:28px; font-weight:700; color:#FFF; margin-top:16px;
+    text-shadow:0 0 20px rgba(255,255,255,0.3); }
+  .s1-sub { font-size:24px; color:#FF3366; font-weight:700; margin-top:6px;
+    text-shadow:0 0 15px rgba(255,51,102,0.4); }
 
   /* Scene 2: Professor */
-  .s2-photo { width:220px; height:280px; border-radius:8px; border:2px solid #FFD700;
-    object-fit:cover; margin-bottom:16px; }
-  .s2-name { font-size:38px; font-weight:900; color:#FFD700; }
-  .s2-title { font-size:20px; color:#FFF; margin-top:6px; }
-  .s2-org { font-size:14px; color:#9090A0; margin-top:4px; }
+  .s2-photo { width:240px; height:300px; border-radius:16px;
+    object-fit:cover; margin-bottom:18px;
+    box-shadow:0 0 40px rgba(255,215,0,0.25); }
+  .s2-name { font-size:42px; font-weight:900; color:#FFD700;
+    text-shadow:0 0 30px rgba(255,215,0,0.4); }
+  .s2-title { font-size:22px; color:rgba(255,255,255,0.8); margin-top:8px; }
+  .s2-org { font-size:15px; color:rgba(255,255,255,0.35); margin-top:4px; }
 
-  /* Scene 3: Three risks */
-  .s3-title { font-size:26px; font-weight:900; color:#FFF; margin-bottom:18px; }
-  .s3-cards { display:flex; gap:12px; }
-  .s3-card { width:210px; height:320px; border-radius:8px; border:1.5px solid;
-    background:rgba(17,17,24,0.95); padding:18px 14px; display:flex; flex-direction:column; }
-  .s3-card .risk-label { font-size:13px; font-weight:700; margin-bottom:6px; }
-  .s3-card .risk-title { font-size:20px; font-weight:900; color:#FFF; margin-bottom:12px; }
-  .s3-card .risk-item { font-size:15px; color:#C0C0D0; margin:5px 0; padding-left:10px; border-left:2px solid; }
+  /* Scene 3: Three risks - floating cards, no borders */
+  .s3-label { font-size:28px; font-weight:900; color:#FFF; margin-bottom:24px;
+    text-shadow:0 0 20px rgba(255,255,255,0.2); }
+  .s3-cards { display:flex; gap:20px; }
+  .s3-card { width:210px; height:340px; border-radius:16px;
+    background:linear-gradient(180deg, rgba(17,17,24,0.95) 0%, rgba(10,10,16,0.9) 100%);
+    padding:24px 16px; display:flex; flex-direction:column;
+    box-shadow:0 8px 32px rgba(0,0,0,0.6); }
+  .s3-card .risk-label { font-size:14px; font-weight:700; margin-bottom:8px; letter-spacing:1px; }
+  .s3-card .risk-title { font-size:24px; font-weight:900; color:#FFF; margin-bottom:16px;
+    text-shadow:0 0 15px rgba(255,255,255,0.2); }
+  .s3-card .risk-item { font-size:16px; color:rgba(255,255,255,0.55); margin:6px 0;
+    padding-left:16px; position:relative; }
+  .s3-card .risk-item::before { content:''; position:absolute; left:0; top:6px;
+    width:6px; height:6px; border-radius:50%; }
 
   /* Scene 4: US Confrontation */
-  .s4-header { font-size:18px; font-weight:900; color:#FF3366; margin-bottom:14px;
-    background:rgba(26,16,32,0.9); padding:8px 20px; border-radius:4px; border:1px solid #FF3366; }
-  .s4-us { background:rgba(13,13,26,0.95); border:2px solid #FF3366; border-radius:6px;
-    padding:12px 24px; text-align:center; margin-bottom:10px; }
-  .s4-us .us-name { font-size:24px; font-weight:900; color:#FFF; }
-  .s4-us .us-sub { font-size:14px; color:#FF3366; }
-  .s4-row { display:flex; gap:10px; align-items:center; margin-bottom:10px; }
-  .s4-target { background:rgba(13,13,26,0.95); border:1px solid #FFD700; border-radius:6px;
-    padding:10px 14px; text-align:center; min-width:130px; }
-  .s4-target .t-name { font-size:16px; font-weight:900; color:#FFD700; }
-  .s4-target .t-item { font-size:11px; color:#A0A0B0; }
-  .s4-vs { font-size:16px; font-weight:900; color:#FF3366; }
-  .s4-stats { display:flex; gap:10px; }
-  .s4-stat { background:rgba(13,13,26,0.95); border-radius:4px; padding:8px 18px; text-align:center; }
-  .s4-stat .st-val { font-size:20px; font-weight:900; }
-  .s4-stat .st-label { font-size:11px; color:#9090A0; }
+  .s4-header { font-size:22px; font-weight:900; color:#FF3366; margin-bottom:16px;
+    text-shadow:0 0 20px rgba(255,51,102,0.4); letter-spacing:2px; }
+  .s4-us { padding:14px 30px; text-align:center; margin-bottom:12px;
+    background:rgba(13,13,26,0.8); border-radius:12px;
+    box-shadow:0 4px 20px rgba(255,51,102,0.15); }
+  .s4-us .us-name { font-size:28px; font-weight:900; color:#FFF;
+    text-shadow:0 0 20px rgba(255,255,255,0.2); }
+  .s4-us .us-sub { font-size:15px; color:#FF3366; margin-top:4px; }
+  .s4-row { display:flex; gap:16px; align-items:center; margin-bottom:12px; }
+  .s4-target { padding:12px 16px; text-align:center; min-width:140px;
+    background:rgba(13,13,26,0.8); border-radius:10px;
+    box-shadow:0 4px 16px rgba(255,215,0,0.1); }
+  .s4-target .t-name { font-size:18px; font-weight:900; color:#FFD700; }
+  .s4-target .t-item { font-size:12px; color:rgba(255,255,255,0.4); margin:2px 0; }
+  .s4-vs { font-size:18px; font-weight:900; color:#FF3366; opacity:0.6; }
+  .s4-stats { display:flex; gap:14px; margin-top:4px; }
+  .s4-stat { padding:10px 20px; text-align:center; background:rgba(13,13,26,0.6); border-radius:8px; }
+  .s4-stat .st-val { font-size:22px; font-weight:900; }
+  .s4-stat .st-label { font-size:12px; color:rgba(255,255,255,0.35); margin-top:2px; }
 
   /* Scene 5: Belt & Road */
-  .s5-title { font-size:30px; font-weight:900; color:#00FF88; margin-bottom:20px; }
-  .s5-route { display:flex; align-items:center; gap:6px; margin-bottom:16px; }
-  .s5-node { width:55px; height:55px; border-radius:50%; display:flex;
-    align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#FFF; }
-  .s5-line { width:40px; height:3px; background:#00FF88; }
-  .s5-desc { font-size:16px; color:#9090A0; }
+  .s5-title { font-size:34px; font-weight:900; color:#00FF88; margin-bottom:28px;
+    text-shadow:0 0 30px rgba(0,255,136,0.4); }
+  .s5-route { display:flex; align-items:center; gap:10px; margin-bottom:20px; }
+  .s5-node { width:68px; height:68px; border-radius:50%; display:flex;
+    align-items:center; justify-content:center; font-size:15px; font-weight:700; color:#FFF;
+    box-shadow:0 0 30px rgba(0,0,0,0.5); }
+  .s5-line { width:48px; height:4px; background:#00FF88;
+    box-shadow:0 0 12px rgba(0,255,136,0.5); }
+  .s5-desc { font-size:18px; color:rgba(255,255,255,0.4); }
 
   /* Scene 6: Hormuz (same as s1) */
+
   /* Scene 7: Policy change */
-  .s7-warn { width:70px; height:70px; border:3px solid #FFD700; border-radius:50%;
-    display:flex; align-items:center; justify-content:center; font-size:36px;
-    font-weight:900; color:#FFD700; margin-bottom:16px; }
-  .s7-cases { display:flex; gap:12px; margin:16px 0; }
-  .s7-case { background:rgba(17,17,24,0.95); border-radius:6px; padding:12px 18px;
-    text-align:center; border:1.5px solid; min-width:130px; }
-  .s7-case .c-name { font-size:18px; font-weight:900; color:#FFF; }
-  .s7-case .c-policy { font-size:14px; margin:4px 0; }
-  .s7-case .c-year { font-size:11px; color:#606070; }
+  .s7-warn { width:80px; height:80px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:42px;
+    font-weight:900; color:#FFD700; margin-bottom:18px;
+    background:rgba(255,215,0,0.08); box-shadow:0 0 40px rgba(255,215,0,0.2); }
+  .s7-title { font-size:30px; font-weight:900; color:#FF3366; margin-bottom:8px;
+    text-shadow:0 0 20px rgba(255,51,102,0.3); }
+  .s7-sub { font-size:16px; color:rgba(255,255,255,0.5); margin-bottom:20px; }
+  .s7-cases { display:flex; gap:16px; }
+  .s7-case { padding:16px 22px; text-align:center; min-width:140px;
+    background:rgba(17,17,24,0.8); border-radius:12px;
+    box-shadow:0 4px 16px rgba(0,0,0,0.4); }
+  .s7-case .c-name { font-size:22px; font-weight:900; color:#FFF; }
+  .s7-case .c-policy { font-size:15px; margin:6px 0; }
+  .s7-case .c-year { font-size:12px; color:rgba(255,255,255,0.3); }
 
   /* Scene 8: Five nations */
-  .s8-title { font-size:26px; font-weight:900; color:#FF3366; margin-bottom:16px; }
-  .s8-nations { display:flex; gap:8px; margin-bottom:14px; }
-  .s8-nation { width:120px; height:170px; border-radius:6px; border:1.5px solid;
-    background:rgba(17,17,24,0.95); display:flex; flex-direction:column;
-    align-items:center; justify-content:center; gap:6px; }
-  .s8-nation .n-name { font-size:18px; font-weight:900; color:#FFF; }
-  .s8-nation .n-policy { font-size:13px; }
-  .s8-nation .n-year { font-size:11px; color:#606070; }
-  .s8-impact { font-size:15px; color:#FF3366; background:rgba(26,16,32,0.9);
-    padding:8px 20px; border-radius:4px; border:1px solid #FF3366; margin-bottom:8px; }
+  .s8-title { font-size:30px; font-weight:900; color:#FF3366; margin-bottom:20px;
+    text-shadow:0 0 20px rgba(255,51,102,0.3); }
+  .s8-nations { display:flex; gap:10px; margin-bottom:16px; }
+  .s8-nation { width:118px; height:180px; border-radius:14px;
+    background:rgba(17,17,24,0.8); display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:8px;
+    box-shadow:0 4px 16px rgba(0,0,0,0.4); }
+  .s8-nation .n-name { font-size:20px; font-weight:900; color:#FFF; }
+  .s8-nation .n-policy { font-size:14px; }
+  .s8-nation .n-year { font-size:11px; color:rgba(255,255,255,0.3); }
+  .s8-impact { font-size:16px; color:#FF3366; padding:10px 24px;
+    background:rgba(255,51,102,0.06); border-radius:8px; margin-bottom:10px; }
+  .s8-bottom { font-size:20px; font-weight:900; color:#00FF88;
+    text-shadow:0 0 15px rgba(0,255,136,0.3); }
 
   /* Scene 9: EU */
-  .s9-title { font-size:26px; font-weight:900; color:#FFD700; margin-bottom:6px; }
-  .s9-sub { font-size:16px; color:#B0B0C0; margin-bottom:16px; }
-  .s9-circle { width:140px; height:140px; border-radius:50%; border:3px solid #FFD700;
-    display:flex; align-items:center; justify-content:center; font-size:48px;
-    font-weight:900; color:#FFD700; margin-bottom:16px; background:rgba(13,13,26,0.95); }
-  .s9-risks { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; max-width:600px; }
-  .s9-risk { background:rgba(17,17,24,0.95); border:1px solid #FFD700; border-radius:14px;
-    padding:6px 16px; font-size:14px; color:#C0C0D0; }
+  .s9-title { font-size:30px; font-weight:900; color:#FFD700; margin-bottom:8px;
+    text-shadow:0 0 20px rgba(255,215,0,0.3); }
+  .s9-sub { font-size:17px; color:rgba(255,255,255,0.45); margin-bottom:22px; }
+  .s9-circle { width:160px; height:160px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:56px;
+    font-weight:900; color:#FFD700; margin-bottom:20px;
+    background:rgba(255,215,0,0.06); box-shadow:0 0 50px rgba(255,215,0,0.15); }
+  .s9-risks { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; max-width:600px; }
+  .s9-risk { padding:8px 20px; font-size:15px; color:rgba(255,255,255,0.55);
+    background:rgba(255,215,0,0.04); border-radius:20px; }
 
   /* Scene 10: Three responses */
-  .s10-title { font-size:24px; font-weight:900; color:#00FF88; margin-bottom:16px; }
-  .s10-cards { display:flex; gap:12px; }
-  .s10-card { width:210px; height:260px; border-radius:8px; border:1.5px solid;
-    background:rgba(17,17,24,0.95); display:flex; flex-direction:column;
-    align-items:center; padding-top:24px; }
-  .s10-card .r-title { font-size:22px; font-weight:900; color:#FFF; margin-bottom:14px; }
-  .s10-card .r-item { font-size:16px; color:#C0C0D0; margin:4px 0; }
+  .s10-title { font-size:28px; font-weight:900; color:#00FF88; margin-bottom:22px;
+    text-shadow:0 0 20px rgba(0,255,136,0.3); }
+  .s10-cards { display:flex; gap:16px; }
+  .s10-card { width:210px; height:280px; border-radius:16px;
+    background:linear-gradient(180deg, rgba(17,17,24,0.9) 0%, rgba(10,10,16,0.8) 100%);
+    display:flex; flex-direction:column; align-items:center; padding-top:32px;
+    box-shadow:0 8px 28px rgba(0,0,0,0.5); }
+  .s10-card .r-title { font-size:26px; font-weight:900; color:#FFF; margin-bottom:16px;
+    text-shadow:0 0 15px rgba(255,255,255,0.2); }
+  .s10-card .r-item { font-size:17px; color:rgba(255,255,255,0.45); margin:5px 0; }
 
   /* Scene 11: Geopolitical */
-  .s11-title { font-size:30px; font-weight:900; color:#FFD700; margin-bottom:6px; }
-  .s11-sub { font-size:18px; color:#B0B0C0; margin-bottom:18px; }
-  .s11-globe { width:160px; height:160px; border-radius:50%; border:3px solid #00FF88;
-    display:flex; align-items:center; justify-content:center; font-size:40px;
-    font-weight:900; color:#00FF88; margin-bottom:18px; background:rgba(13,13,26,0.95); }
-  .s11-points { display:flex; flex-direction:column; gap:6px; }
-  .s11-point { font-size:18px; color:#C0C0D0; }
+  .s11-title { font-size:34px; font-weight:900; color:#FFD700; margin-bottom:8px;
+    text-shadow:0 0 25px rgba(255,215,0,0.3); }
+  .s11-sub { font-size:20px; color:rgba(255,255,255,0.45); margin-bottom:24px; }
+  .s11-globe { width:180px; height:180px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:50px;
+    font-weight:900; color:#00FF88; margin-bottom:22px;
+    background:rgba(0,255,136,0.04); box-shadow:0 0 50px rgba(0,255,136,0.12); }
+  .s11-points { display:flex; flex-direction:column; gap:8px; }
+  .s11-point { font-size:20px; color:rgba(255,255,255,0.5); }
 
   /* Scene 12: Compliance */
-  .s12-title { font-size:30px; font-weight:900; color:#00FF88; margin-bottom:6px; }
-  .s12-sub { font-size:18px; color:#B0B0C0; margin-bottom:18px; }
-  .s12-gate { width:240px; height:170px; border-radius:8px; border:3px solid #00FF88;
+  .s12-title { font-size:34px; font-weight:900; color:#00FF88; margin-bottom:8px;
+    text-shadow:0 0 25px rgba(0,255,136,0.3); }
+  .s12-sub { font-size:20px; color:rgba(255,255,255,0.45); margin-bottom:24px; }
+  .s12-gate { width:280px; height:190px; border-radius:16px;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    background:rgba(13,13,26,0.95); margin-bottom:14px; }
-  .s12-gate .gate-title { font-size:48px; font-weight:900; color:#00FF88; }
-  .s12-gate .gate-sub { font-size:16px; color:#00FF88; margin-top:6px; }
+    background:rgba(0,255,136,0.04); box-shadow:0 0 40px rgba(0,255,136,0.08);
+    margin-bottom:18px; }
+  .s12-gate .gate-title { font-size:60px; font-weight:900; color:#00FF88;
+    text-shadow:0 0 30px rgba(0,255,136,0.4); }
+  .s12-gate .gate-sub { font-size:18px; color:rgba(0,255,136,0.4); margin-top:8px; letter-spacing:4px; }
 
   /* Scene 13: Localization */
-  .s13-title { font-size:28px; font-weight:900; color:#00FF88; margin-bottom:6px; }
-  .s13-sub { font-size:16px; color:#B0B0C0; margin-bottom:18px; }
+  .s13-title { font-size:32px; font-weight:900; color:#00FF88; margin-bottom:8px;
+    text-shadow:0 0 20px rgba(0,255,136,0.3); }
+  .s13-sub { font-size:18px; color:rgba(255,255,255,0.45); margin-bottom:24px; }
   .s13-boxes { display:flex; align-items:center; gap:0; }
-  .s13-box { width:140px; height:160px; border-radius:8px; border:2px solid;
-    background:rgba(13,13,26,0.95); display:flex; align-items:center;
-    justify-content:center; font-size:26px; font-weight:900; }
-  .s13-arrow { width:50px; display:flex; align-items:center; }
-  .s13-arr-line { width:36px; height:3px; }
-  .s13-arr-head { width:0; height:0; border-top:10px solid transparent;
-    border-bottom:10px solid transparent; }
+  .s13-box { width:160px; height:180px; border-radius:16px;
+    background:rgba(17,17,24,0.7); display:flex; align-items:center;
+    justify-content:center; font-size:32px; font-weight:900;
+    box-shadow:0 8px 28px rgba(0,0,0,0.5); }
+  .s13-arrow { width:60px; display:flex; align-items:center; }
+  .s13-arr-line { width:40px; height:4px; }
+  .s13-arr-head { width:0; height:0; border-top:12px solid transparent;
+    border-bottom:12px solid transparent; }
 
   /* Scene 14: Handshake (same as s13) */
   /* Scene 15: Growth */
-  .s15-title { font-size:30px; font-weight:900; color:#00FF88; margin-bottom:6px; }
-  .s15-sub { font-size:18px; color:#B0B0C0; margin-bottom:18px; }
-  .s15-arrow-up { width:0; height:0; border-left:35px solid transparent;
-    border-right:35px solid transparent; border-bottom:60px solid #00FF88; }
-  .s15-bar { width:35px; height:80px; background:#00FF88; margin-top:-2px; }
-  .s15-stats { display:flex; gap:14px; margin-top:16px; }
-  .s15-stat { background:rgba(13,13,26,0.95); border-radius:4px; padding:12px 22px;
-    text-align:center; border:1px solid; }
-  .s15-stat .st-val { font-size:18px; font-weight:900; }
-  .s15-stat .st-label { font-size:12px; color:#9090A0; margin-top:4px; }
-
-  /* Scene 16: Final (same as s15) */
-
-  /* Video element inside scene */
-  .scene-video { width:100%; height:100%; object-fit:cover; }
-  .scene-img { width:100%; height:100%; object-fit:cover; }
+  .s15-title { font-size:34px; font-weight:900; color:#00FF88; margin-bottom:8px;
+    text-shadow:0 0 25px rgba(0,255,136,0.3); }
+  .s15-sub { font-size:20px; color:rgba(255,255,255,0.45); margin-bottom:24px; }
+  .s15-arrow-up { width:0; height:0; border-left:36px solid transparent;
+    border-right:36px solid transparent; border-bottom:64px solid #00FF88;
+    filter:drop-shadow(0 0 20px rgba(0,255,136,0.4)); }
+  .s15-bar { width:36px; height:80px; background:#00FF88; margin-top:-2px;
+    box-shadow:0 0 30px rgba(0,255,136,0.3); }
+  .s15-stats { display:flex; gap:16px; margin-top:20px; }
+  .s15-stat { padding:14px 24px; text-align:center;
+    background:rgba(13,13,26,0.5); border-radius:10px; }
+  .s15-stat .st-val { font-size:20px; font-weight:900; }
+  .s15-stat .st-label { font-size:13px; color:rgba(255,255,255,0.35); margin-top:4px; }
 </style>
 </head>
 <body>
@@ -203,16 +237,14 @@
 
 <audio id="narration" src="public/%E5%8F%A3%E6%92%AD%E9%9F%B3%E9%A2%91.mp3" preload="auto" data-start="0"></audio>
 
-<!-- Top bar -->
 <div class="top-bar">
   <div class="top-title">出海风险分析</div>
   <div class="top-tag">第十二届走出去风险发布会</div>
 </div>
 
-<!-- Content frame -->
 <div class="frame" id="contentFrame">
 
-  <!-- Scene 1: Opening -->
+  <!-- S1: Opening -->
   <div class="scene" id="s1">
     <div class="s1-num">70%</div>
     <div class="s1-arrow"></div><div class="s1-bar"></div>
@@ -220,7 +252,7 @@
     <div class="s1-sub">断崖式下降</div>
   </div>
 
-  <!-- Scene 2: Professor -->
+  <!-- S2: Professor -->
   <div class="scene" id="s2">
     <img class="s2-photo" src="public/assets/professor/lihaitao.jpg" alt="李海涛教授">
     <div class="s2-name">李海涛 教授</div>
@@ -228,44 +260,47 @@
     <div class="s2-org">第十二届走出去风险发布会</div>
   </div>
 
-  <!-- Scene 3: Three Risks -->
+  <!-- S3: Three Risks -->
   <div class="scene" id="s3">
-    <div class="s3-title">三大核心风险</div>
+    <div class="s3-label">三大核心风险</div>
     <div class="s3-cards">
-      <div class="s3-card" style="border-color:#FF3366">
+      <div class="s3-card" style="background:linear-gradient(180deg, rgba(255,51,102,0.12) 0%, rgba(17,17,24,0.95) 40%)">
         <div class="risk-label" style="color:#FF3366">RISK 01</div>
         <div class="risk-title">美国对抗</div>
-        <div class="risk-item" style="border-color:#FF3366">关税54%</div>
-        <div class="risk-item" style="border-color:#FF3366">技术封锁</div>
-        <div class="risk-item" style="border-color:#FF3366">经济脱钩</div>
+        <div class="risk-item"><span style="background:#FF3366"></span>关税升至54%</div>
+        <div class="risk-item"><span style="background:#FF3366"></span>技术封锁升级</div>
+        <div class="risk-item"><span style="background:#FF3366"></span>经济脱钩加速</div>
+        <div class="risk-item"><span style="background:#FF3366"></span>移民驱逐政策</div>
       </div>
-      <div class="s3-card" style="border-color:#FFD700">
+      <div class="s3-card" style="background:linear-gradient(180deg, rgba(255,215,0,0.12) 0%, rgba(17,17,24,0.95) 40%)">
         <div class="risk-label" style="color:#FFD700">RISK 02</div>
         <div class="risk-title">政策突变</div>
-        <div class="risk-item" style="border-color:#FFD700">印尼镍矿禁令</div>
-        <div class="risk-item" style="border-color:#FFD700">印度封禁APP</div>
-        <div class="risk-item" style="border-color:#FFD700">越南反倾销</div>
+        <div class="risk-item"><span style="background:#FFD700"></span>印尼镍矿禁令</div>
+        <div class="risk-item"><span style="background:#FFD700"></span>印度封禁APP</div>
+        <div class="risk-item"><span style="background:#FFD700"></span>越南反倾销</div>
+        <div class="risk-item"><span style="background:#FFD700"></span>沙特本地化</div>
       </div>
-      <div class="s3-card" style="border-color:#00FF88">
+      <div class="s3-card" style="background:linear-gradient(180deg, rgba(0,255,136,0.12) 0%, rgba(17,17,24,0.95) 40%)">
         <div class="risk-label" style="color:#00FF88">RISK 03</div>
         <div class="risk-title">欧盟风险</div>
-        <div class="risk-item" style="border-color:#00FF88">反补贴调查</div>
-        <div class="risk-item" style="border-color:#00FF88">碳边境税</div>
-        <div class="risk-item" style="border-color:#00FF88">新能源关税</div>
+        <div class="risk-item"><span style="background:#00FF88"></span>反补贴调查</div>
+        <div class="risk-item"><span style="background:#00FF88"></span>碳边境税</div>
+        <div class="risk-item"><span style="background:#00FF88"></span>新能源关税</div>
+        <div class="risk-item"><span style="background:#00FF88"></span>海外建厂</div>
       </div>
     </div>
   </div>
 
-  <!-- Scene 4: US Confrontation -->
+  <!-- S4: US Confrontation -->
   <div class="scene" id="s4">
     <div class="s4-header">美国系统性对抗</div>
     <div class="s4-us"><div class="us-name">美国</div><div class="us-sub">系统性对抗中心</div></div>
     <div class="s4-row">
-      <div class="s4-target"><div class="t-name">委内瑞拉</div><div class="t-item">石油制裁</div></div>
+      <div class="s4-target"><div class="t-name">委内瑞拉</div><div class="t-item">石油制裁</div><div class="t-item">金融封锁</div></div>
       <div class="s4-vs">VS</div>
-      <div class="s4-target"><div class="t-name">古巴</div><div class="t-item">长期禁运</div></div>
+      <div class="s4-target"><div class="t-name">古巴</div><div class="t-item">长期禁运</div><div class="t-item">旅游限制</div></div>
       <div class="s4-vs">VS</div>
-      <div class="s4-target"><div class="t-name">霍尔木兹</div><div class="t-item">军事威慑</div></div>
+      <div class="s4-target"><div class="t-name">霍尔木兹</div><div class="t-item">军事威慑</div><div class="t-item">航运下降</div></div>
     </div>
     <div class="s4-stats">
       <div class="s4-stat"><div class="st-val" style="color:#FF3366">20+</div><div class="st-label">受影响国家</div></div>
@@ -274,22 +309,22 @@
     </div>
   </div>
 
-  <!-- Scene 5: Belt & Road -->
+  <!-- S5: Belt & Road -->
   <div class="scene" id="s5">
     <div class="s5-title">一带一路 · 全球南方</div>
     <div class="s5-route">
       <div class="s5-node" style="background:#FF3366">中国</div>
       <div class="s5-line"></div>
-      <div class="s5-node" style="background:#FFD700">委内</div>
+      <div class="s5-node" style="background:#FFD700">委内瑞拉</div>
       <div class="s5-line"></div>
       <div class="s5-node" style="background:#FFD700">古巴</div>
       <div class="s5-line"></div>
-      <div class="s5-node" style="background:#00FF88">霍尔</div>
+      <div class="s5-node" style="background:#00FF88">霍尔木兹</div>
     </div>
-    <div class="s5-desc">转口贸易 · 全球南方 · 供应链重构</div>
+    <div class="s5-desc">转口贸易路径 · 全球南方市场 · 区域供应链重构</div>
   </div>
 
-  <!-- Scene 6: Hormuz -->
+  <!-- S6: Hormuz -->
   <div class="scene" id="s6">
     <div class="s1-num">70%</div>
     <div class="s1-arrow"></div><div class="s1-bar"></div>
@@ -297,69 +332,66 @@
     <div class="s1-sub">断崖式下降</div>
   </div>
 
-  <!-- Scene 7: Policy change -->
+  <!-- S7: Policy change -->
   <div class="scene" id="s7">
     <div class="s7-warn">!</div>
-    <div style="font-size:22px;font-weight:900;color:#FF3366">政策突变</div>
-    <div style="font-size:13px;color:#B0B0C0;margin-top:4px">一夜之间政策变卦</div>
+    <div class="s7-title">政策突变</div>
+    <div class="s7-sub">一夜之间政策变卦</div>
     <div class="s7-cases">
-      <div class="s7-case" style="border-color:#FF3366">
-        <div class="c-name">印尼</div><div class="c-policy" style="color:#FF3366">镍矿禁令</div><div class="c-year">2020</div>
-      </div>
-      <div class="s7-case" style="border-color:#FFD700">
-        <div class="c-name">印度</div><div class="c-policy" style="color:#FFD700">封禁APP</div><div class="c-year">2020</div>
-      </div>
-      <div class="s7-case" style="border-color:#00FF88">
-        <div class="c-name">越南</div><div class="c-policy" style="color:#00FF88">反倾销</div><div class="c-year">2021</div>
-      </div>
+      <div class="s7-case"><div class="c-name">印尼</div><div class="c-policy" style="color:#FF3366">镍矿出口禁令</div><div class="c-year">2020年</div></div>
+      <div class="s7-case"><div class="c-name">印度</div><div class="c-policy" style="color:#FFD700">封禁中国APP</div><div class="c-year">2020年</div></div>
+      <div class="s7-case"><div class="c-name">越南</div><div class="c-policy" style="color:#00FF88">反倾销调查</div><div class="c-year">2021年</div></div>
     </div>
   </div>
 
-  <!-- Scene 8: Five nations -->
+  <!-- S8: Five nations -->
   <div class="scene" id="s8">
     <div class="s8-title">政策突变案例</div>
     <div class="s8-nations">
-      <div class="s8-nation" style="border-color:#FF3366"><div class="n-name">印尼</div><div class="n-policy" style="color:#FF3366">镍矿禁令</div><div class="n-year">2020</div></div>
-      <div class="s8-nation" style="border-color:#FFD700"><div class="n-name">印度</div><div class="n-policy" style="color:#FFD700">封禁APP</div><div class="n-year">2020</div></div>
-      <div class="s8-nation" style="border-color:#00FF88"><div class="n-name">越南</div><div class="n-policy" style="color:#00FF88">反倾销</div><div class="n-year">2021</div></div>
-      <div class="s8-nation" style="border-color:#FF3366"><div class="n-name">沙特</div><div class="n-policy" style="color:#FF3366">本地化</div><div class="n-year">2023</div></div>
-      <div class="s8-nation" style="border-color:#FFD700"><div class="n-name">非洲</div><div class="n-policy" style="color:#FFD700">政策调整</div><div class="n-year">持续</div></div>
+      <div class="s8-nation"><div class="n-name">印尼</div><div class="n-policy" style="color:#FF3366">镍矿禁令</div><div class="n-year">2020</div></div>
+      <div class="s8-nation"><div class="n-name">印度</div><div class="n-policy" style="color:#FFD700">封禁APP</div><div class="n-year">2020</div></div>
+      <div class="s8-nation"><div class="n-name">越南</div><div class="n-policy" style="color:#00FF88">反倾销</div><div class="n-year">2021</div></div>
+      <div class="s8-nation"><div class="n-name">沙特</div><div class="n-policy" style="color:#FF3366">本地化</div><div class="n-year">2023</div></div>
+      <div class="s8-nation"><div class="n-name">非洲</div><div class="n-policy" style="color:#FFD700">政策调整</div><div class="n-year">持续</div></div>
     </div>
-    <div class="s8-impact">提前尽调 · 多元化布局 · 应急预案</div>
-    <div style="font-size:16px;font-weight:900;color:#00FF88;margin-top:6px">合规是门票，不是成本</div>
+    <div class="s8-impact">提前政治尽调 · 多元化布局 · 应急预案机制</div>
+    <div class="s8-bottom">合规是门票，不是成本</div>
   </div>
 
-  <!-- Scene 9: EU Risk -->
+  <!-- S9: EU Risk -->
   <div class="scene" id="s9">
     <div class="s9-title">欧盟潜在风险</div>
     <div class="s9-sub">最大贸易顺差来源 · 关税冲击</div>
     <div class="s9-circle">EU</div>
     <div class="s9-risks">
-      <div class="s9-risk">反补贴调查</div><div class="s9-risk">碳边境调节</div>
-      <div class="s9-risk">新能源关税</div><div class="s9-risk">海外建厂</div>
+      <div class="s9-risk">反补贴调查启动</div>
+      <div class="s9-risk">碳边境调节机制</div>
+      <div class="s9-risk">新能源车关税</div>
+      <div class="s9-risk">海外建厂策略</div>
+      <div class="s9-risk">绿色合规体系</div>
     </div>
   </div>
 
-  <!-- Scene 10: Three responses -->
+  <!-- S10: Three responses -->
   <div class="scene" id="s10">
     <div class="s10-title">三大应对之道</div>
     <div class="s10-cards">
-      <div class="s10-card" style="border-color:#FFD700">
+      <div class="s10-card" style="background:linear-gradient(180deg, rgba(255,215,0,0.1) 0%, rgba(17,17,24,0.9) 35%)">
         <div class="r-title">地缘洞察</div>
         <div class="r-item">政治尽调</div><div class="r-item">风险评估</div><div class="r-item">多国布局</div>
       </div>
-      <div class="s10-card" style="border-color:#00FF88">
+      <div class="s10-card" style="background:linear-gradient(180deg, rgba(0,255,136,0.1) 0%, rgba(17,17,24,0.9) 35%)">
         <div class="r-title">合规能力</div>
         <div class="r-item">法律合规</div><div class="r-item">税务合规</div><div class="r-item">数据合规</div>
       </div>
-      <div class="s10-card" style="border-color:#00FF88">
+      <div class="s10-card" style="background:linear-gradient(180deg, rgba(0,255,136,0.1) 0%, rgba(17,17,24,0.9) 35%)">
         <div class="r-title">本地化执行</div>
         <div class="r-item">本地运营</div><div class="r-item">文化融合</div><div class="r-item">人才本土</div>
       </div>
     </div>
   </div>
 
-  <!-- Scene 11: Geopolitical -->
+  <!-- S11: Geopolitical -->
   <div class="scene" id="s11">
     <div class="s11-title">地缘洞察能力</div>
     <div class="s11-sub">不能只算经济账，不算政治账</div>
@@ -372,82 +404,88 @@
     </div>
   </div>
 
-  <!-- Scene 12: Compliance -->
+  <!-- S12: Compliance -->
   <div class="scene" id="s12">
     <div class="s12-title">合规能力</div>
     <div class="s12-sub">合规是门票，不是成本</div>
     <div class="s12-gate">
-      <div class="gate-title">合规</div><div class="gate-sub">COMPLIANCE</div>
+      <div class="gate-title">合规</div>
+      <div class="gate-sub">COMPLIANCE</div>
     </div>
     <div class="s11-points">
-      <div class="s11-point">法律合规审查</div><div class="s11-point">税务合规体系</div>
-      <div class="s11-point">数据合规保护</div><div class="s11-point">ESG合规标准</div>
+      <div class="s11-point">法律合规审查</div>
+      <div class="s11-point">税务合规体系</div>
+      <div class="s11-point">数据合规保护</div>
+      <div class="s11-point">ESG合规标准</div>
     </div>
   </div>
 
-  <!-- Scene 13: Localization -->
+  <!-- S13: Localization -->
   <div class="scene" id="s13">
     <div class="s13-title">本地化执行能力</div>
     <div class="s13-sub">走进去才能走出来</div>
     <div class="s13-boxes">
-      <div class="s13-box" style="border-color:#00FF88;color:#00FF88">中国</div>
+      <div class="s13-box" style="color:#00FF88;background:rgba(0,255,136,0.06)">中国</div>
       <div class="s13-arrow">
-        <div class="s13-arr-line" style="background:#00FF88"></div>
-        <div class="s13-arr-head" style="border-left:10px solid #00FF88"></div>
+        <div class="s13-arr-line" style="background:#00FF88;box-shadow:0 0 10px rgba(0,255,136,0.5)"></div>
+        <div class="s13-arr-head" style="border-left:14px solid #00FF88"></div>
       </div>
-      <div class="s13-box" style="border-color:#FFD700;color:#FFD700">当地</div>
+      <div class="s13-box" style="color:#FFD700;background:rgba(255,215,0,0.06)">当地</div>
     </div>
-    <div class="s11-points" style="margin-top:10px">
-      <div class="s11-point">本地化运营</div><div class="s11-point">文化融合</div>
-      <div class="s11-point">人才本土化</div><div class="s11-point">供应链协同</div>
+    <div class="s11-points" style="margin-top:16px">
+      <div class="s11-point">本地化运营</div>
+      <div class="s11-point">文化融合</div>
+      <div class="s11-point">人才本土化</div>
+      <div class="s11-point">供应链协同</div>
     </div>
   </div>
 
-  <!-- Scene 14: Handshake -->
+  <!-- S14: Handshake -->
   <div class="scene" id="s14">
-    <div style="font-size:20px;font-weight:900;color:#FFD700;margin-bottom:4px">走进去才能走出来</div>
-    <div style="font-size:12px;color:#B0B0C0;margin-bottom:12px">深入当地 · 扎根当地 · 与当地共赢</div>
+    <div style="font-size:32px;font-weight:900;color:#FFD700;margin-bottom:8px;text-shadow:0 0 20px rgba(255,215,0,0.3)">走进去才能走出来</div>
+    <div style="font-size:18px;color:rgba(255,255,255,0.45);margin-bottom:24px">深入当地 · 扎根当地 · 与当地共赢</div>
     <div class="s13-boxes">
-      <div class="s13-box" style="border-color:#00FF88;color:#00FF88">中国</div>
+      <div class="s13-box" style="color:#00FF88;background:rgba(0,255,136,0.06)">中国</div>
       <div class="s13-arrow">
-        <div class="s13-arr-line" style="background:#00FF88"></div>
-        <div class="s13-arr-head" style="border-left:10px solid #00FF88"></div>
+        <div class="s13-arr-line" style="background:#00FF88;box-shadow:0 0 10px rgba(0,255,136,0.5)"></div>
+        <div class="s13-arr-head" style="border-left:14px solid #00FF88"></div>
       </div>
-      <div class="s13-box" style="border-color:#FFD700;color:#FFD700">当地</div>
+      <div class="s13-box" style="color:#FFD700;background:rgba(255,215,0,0.06)">当地</div>
     </div>
-    <div class="s11-points" style="margin-top:10px">
-      <div class="s11-point">本地化运营</div><div class="s11-point">文化融合</div>
-      <div class="s11-point">人才本土化</div><div class="s11-point">供应链协同</div>
+    <div class="s11-points" style="margin-top:16px">
+      <div class="s11-point">本地化运营</div>
+      <div class="s11-point">文化融合</div>
+      <div class="s11-point">人才本土化</div>
+      <div class="s11-point">供应链协同</div>
     </div>
   </div>
 
-  <!-- Scene 15: Growth -->
+  <!-- S15: Growth -->
   <div class="scene" id="s15">
     <div class="s15-title">抓住机遇 · 管控风险</div>
     <div class="s15-sub">出口逆势上扬，风险不断涌现</div>
     <div class="s15-arrow-up"></div><div class="s15-bar"></div>
     <div class="s15-stats">
-      <div class="s15-stat" style="border-color:#00FF88"><div class="st-val" style="color:#00FF88">逆势</div><div class="st-label">出口增长</div></div>
-      <div class="s15-stat" style="border-color:#FFD700"><div class="st-val" style="color:#FFD700">必备</div><div class="st-label">风险管控</div></div>
-      <div class="s15-stat" style="border-color:#FF3366"><div class="st-val" style="color:#FF3366">关键</div><div class="st-label">机遇把握</div></div>
+      <div class="s15-stat"><div class="st-val" style="color:#00FF88">逆势</div><div class="st-label">出口增长</div></div>
+      <div class="s15-stat"><div class="st-val" style="color:#FFD700">必备</div><div class="st-label">风险管控</div></div>
+      <div class="s15-stat"><div class="st-val" style="color:#FF3366">关键</div><div class="st-label">机遇把握</div></div>
     </div>
   </div>
 
-  <!-- Scene 16: Final -->
+  <!-- S16: Final -->
   <div class="scene" id="s16">
     <div class="s15-title">抓住机遇 · 管控风险</div>
     <div class="s15-sub">逆势上扬 · 中国企业出海新格局</div>
     <div class="s15-arrow-up"></div><div class="s15-bar"></div>
-    <div class="s11-points" style="margin-top:10px">
+    <div class="s11-points" style="margin-top:16px">
       <div class="s11-point">出口逆势上扬</div>
       <div class="s11-point">风险不断涌现</div>
       <div class="s11-point">机遇与挑战并存</div>
     </div>
   </div>
 
-</div><!-- end frame -->
+</div>
 
-<!-- Caption area -->
 <div class="caption-wrap">
   <div class="caption-bg">
     <div class="caption-text" id="captionText"></div>
@@ -455,13 +493,12 @@
   </div>
 </div>
 
-<!-- Host zone -->
 <div class="host-zone">
   <div class="host-avatar">主播</div>
   <div class="host-label">出海风险分析</div>
 </div>
 
-</div><!-- end comp-root -->
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
 <script>
@@ -489,7 +526,6 @@ const scenes = [
 const captionText = document.getElementById('captionText');
 const captionSub = document.getElementById('captionSub');
 
-// Hide all scenes
 document.querySelectorAll('.scene').forEach(el => { el.style.opacity = '0'; el.style.display = 'none'; });
 
 scenes.forEach((s, i) => {
@@ -499,36 +535,18 @@ scenes.forEach((s, i) => {
     captionText.textContent = s.cap;
     captionText.style.color = s.color;
     captionSub.textContent = s.sub;
-
-    // Hide all scenes
     document.querySelectorAll('.scene').forEach(el => { el.style.opacity = '0'; el.style.display = 'none'; });
-
-    // Show current scene
-    if (sceneEl) {
-      sceneEl.style.display = 'flex';
-      sceneEl.style.opacity = '1';
-    }
+    if (sceneEl) { sceneEl.style.display = 'flex'; sceneEl.style.opacity = '1'; }
   }, null, s.start);
 
-  // Caption - always visible, just update text and color
-  tl.call(() => {
-    captionText.textContent = s.cap;
-    captionText.style.color = s.color;
-    captionSub.textContent = s.sub;
-  }, null, s.start);
-
-  // Scene entrance animation (scale + fade)
   if (sceneEl) {
-    tl.fromTo(sceneEl, {scale:0.92, opacity:0}, {scale:1, opacity:1, duration:0.5, ease:'back.out(1.2)', overwrite:'auto'}, s.start);
-    tl.to(sceneEl, {scale:0.95, opacity:0, duration:0.3, overwrite:'auto'}, s.end - 0.3);
+    tl.fromTo(sceneEl, {scale:0.9, opacity:0}, {scale:1, opacity:1, duration:0.55, ease:'back.out(1.3)', overwrite:'auto'}, s.start);
+    tl.to(sceneEl, {scale:0.93, opacity:0, duration:0.35, overwrite:'auto'}, s.end - 0.35);
   }
 });
 
 const audio = document.getElementById('narration');
 audio.volume = 1.0;
-
-// Ensure captions are always visible (no fade out between scenes)
-// Only animate scene content, keep captions persistent
 
 window.__timelines = window.__timelines || {};
 window.__timelines['main'] = tl;
