@@ -24,7 +24,7 @@
     padding:3px 10px; border-radius:10px; border:1px solid rgba(0,255,136,0.2); }
 
   /* ===== CONTENT FRAME ===== */
-  .frame { position:absolute; top:80px; left:24px; right:24px; height:340px;
+  .frame { position:absolute; top:60px; left:20px; right:20px; height:560px;
     border:2px solid #00FF88; border-radius:4px; overflow:hidden; z-index:10;
     background:#000; box-shadow:0 0 15px rgba(0,255,136,0.25); }
 
@@ -33,161 +33,161 @@
     flex-direction:column; align-items:center; justify-content:center; }
 
   /* ===== CAPTION AREA ===== */
-  .caption-wrap { position:absolute; top:440px; left:24px; right:24px; z-index:20; }
-  .caption-bg { background:rgba(0,0,0,0.75); border-radius:8px; padding:14px 20px;
+  .caption-wrap { position:absolute; top:640px; left:20px; right:20px; z-index:20; }
+  .caption-bg { background:rgba(0,0,0,0.75); border-radius:8px; padding:18px 24px;
     text-align:center; border:1px solid rgba(255,255,255,0.08); }
-  .caption-text { font-size:26px; font-weight:900; color:#FFF; line-height:1.3;
+  .caption-text { font-size:32px; font-weight:900; color:#FFF; line-height:1.3;
     text-shadow:0 1px 4px rgba(0,0,0,0.8); }
-  .caption-sub { font-size:16px; font-weight:600; color:#B0B0C0; margin-top:6px;
+  .caption-sub { font-size:20px; font-weight:600; color:#B0B0C0; margin-top:8px;
     text-shadow:0 1px 3px rgba(0,0,0,0.8); }
 
   /* ===== HOST AVATAR (bottom) ===== */
-  .host-zone { position:absolute; bottom:60px; left:0; right:0; z-index:30;
-    display:flex; flex-direction:column; align-items:center; gap:8px; }
-  .host-avatar { width:90px; height:90px; border-radius:50%; border:3px solid #00FF88;
+  .host-zone { position:absolute; bottom:30px; left:0; right:0; z-index:30;
+    display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .host-avatar { width:80px; height:80px; border-radius:50%; border:3px solid #00FF88;
     box-shadow:0 0 20px rgba(0,255,136,0.4); background:rgba(0,255,136,0.1);
-    display:flex; align-items:center; justify-content:center; font-size:14px;
+    display:flex; align-items:center; justify-content:center; font-size:13px;
     color:#00FF88; font-weight:700; overflow:hidden; }
   .host-avatar img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
-  .host-label { font-size:14px; font-weight:700; color:#00FF88; }
+  .host-label { font-size:13px; font-weight:700; color:#00FF88; }
 
   /* ===== SCENE STYLES ===== */
 
   /* Scene 1: Opening - big numbers */
-  .s1-num { font-size:80px; font-weight:900; color:#FFD700; line-height:1; }
-  .s1-arrow { width:0; height:0; border-left:20px solid transparent;
-    border-right:20px solid transparent; border-top:35px solid #FF3366; margin:12px 0; }
-  .s1-bar { width:30px; height:50px; background:#FF3366; }
-  .s1-label { font-size:18px; font-weight:700; color:#FFF; margin-top:12px; }
-  .s1-sub { font-size:16px; color:#FF3366; font-weight:700; margin-top:4px; }
+  .s1-num { font-size:120px; font-weight:900; color:#FFD700; line-height:1; }
+  .s1-arrow { width:0; height:0; border-left:30px solid transparent;
+    border-right:30px solid transparent; border-top:50px solid #FF3366; margin:16px 0; }
+  .s1-bar { width:40px; height:70px; background:#FF3366; }
+  .s1-label { font-size:26px; font-weight:700; color:#FFF; margin-top:16px; }
+  .s1-sub { font-size:22px; color:#FF3366; font-weight:700; margin-top:6px; }
 
   /* Scene 2: Professor */
-  .s2-photo { width:160px; height:200px; border-radius:8px; border:2px solid #FFD700;
-    object-fit:cover; margin-bottom:12px; }
-  .s2-name { font-size:28px; font-weight:900; color:#FFD700; }
-  .s2-title { font-size:14px; color:#FFF; margin-top:4px; }
-  .s2-org { font-size:11px; color:#9090A0; margin-top:2px; }
+  .s2-photo { width:220px; height:280px; border-radius:8px; border:2px solid #FFD700;
+    object-fit:cover; margin-bottom:16px; }
+  .s2-name { font-size:38px; font-weight:900; color:#FFD700; }
+  .s2-title { font-size:20px; color:#FFF; margin-top:6px; }
+  .s2-org { font-size:14px; color:#9090A0; margin-top:4px; }
 
   /* Scene 3: Three risks */
-  .s3-title { font-size:18px; font-weight:900; color:#FFF; margin-bottom:12px; }
-  .s3-cards { display:flex; gap:8px; }
-  .s3-card { width:200px; height:240px; border-radius:8px; border:1.5px solid;
-    background:rgba(17,17,24,0.95); padding:12px 10px; display:flex; flex-direction:column; }
-  .s3-card .risk-label { font-size:10px; font-weight:700; margin-bottom:4px; }
-  .s3-card .risk-title { font-size:15px; font-weight:900; color:#FFF; margin-bottom:8px; }
-  .s3-card .risk-item { font-size:11px; color:#C0C0D0; margin:3px 0; padding-left:8px; border-left:2px solid; }
+  .s3-title { font-size:26px; font-weight:900; color:#FFF; margin-bottom:18px; }
+  .s3-cards { display:flex; gap:12px; }
+  .s3-card { width:210px; height:320px; border-radius:8px; border:1.5px solid;
+    background:rgba(17,17,24,0.95); padding:18px 14px; display:flex; flex-direction:column; }
+  .s3-card .risk-label { font-size:13px; font-weight:700; margin-bottom:6px; }
+  .s3-card .risk-title { font-size:20px; font-weight:900; color:#FFF; margin-bottom:12px; }
+  .s3-card .risk-item { font-size:15px; color:#C0C0D0; margin:5px 0; padding-left:10px; border-left:2px solid; }
 
   /* Scene 4: US Confrontation */
-  .s4-header { font-size:14px; font-weight:900; color:#FF3366; margin-bottom:12px;
-    background:rgba(26,16,32,0.9); padding:6px 16px; border-radius:4px; border:1px solid #FF3366; }
+  .s4-header { font-size:18px; font-weight:900; color:#FF3366; margin-bottom:14px;
+    background:rgba(26,16,32,0.9); padding:8px 20px; border-radius:4px; border:1px solid #FF3366; }
   .s4-us { background:rgba(13,13,26,0.95); border:2px solid #FF3366; border-radius:6px;
-    padding:8px 16px; text-align:center; margin-bottom:8px; }
-  .s4-us .us-name { font-size:18px; font-weight:900; color:#FFF; }
-  .s4-us .us-sub { font-size:11px; color:#FF3366; }
-  .s4-row { display:flex; gap:8px; align-items:center; margin-bottom:8px; }
+    padding:12px 24px; text-align:center; margin-bottom:10px; }
+  .s4-us .us-name { font-size:24px; font-weight:900; color:#FFF; }
+  .s4-us .us-sub { font-size:14px; color:#FF3366; }
+  .s4-row { display:flex; gap:10px; align-items:center; margin-bottom:10px; }
   .s4-target { background:rgba(13,13,26,0.95); border:1px solid #FFD700; border-radius:6px;
-    padding:6px 10px; text-align:center; min-width:120px; }
-  .s4-target .t-name { font-size:13px; font-weight:900; color:#FFD700; }
-  .s4-target .t-item { font-size:9px; color:#A0A0B0; }
-  .s4-vs { font-size:14px; font-weight:900; color:#FF3366; }
-  .s4-stats { display:flex; gap:8px; }
-  .s4-stat { background:rgba(13,13,26,0.95); border-radius:4px; padding:6px 14px; text-align:center; }
-  .s4-stat .st-val { font-size:16px; font-weight:900; }
-  .s4-stat .st-label { font-size:9px; color:#9090A0; }
+    padding:10px 14px; text-align:center; min-width:130px; }
+  .s4-target .t-name { font-size:16px; font-weight:900; color:#FFD700; }
+  .s4-target .t-item { font-size:11px; color:#A0A0B0; }
+  .s4-vs { font-size:16px; font-weight:900; color:#FF3366; }
+  .s4-stats { display:flex; gap:10px; }
+  .s4-stat { background:rgba(13,13,26,0.95); border-radius:4px; padding:8px 18px; text-align:center; }
+  .s4-stat .st-val { font-size:20px; font-weight:900; }
+  .s4-stat .st-label { font-size:11px; color:#9090A0; }
 
   /* Scene 5: Belt & Road */
-  .s5-title { font-size:22px; font-weight:900; color:#00FF88; margin-bottom:16px; }
-  .s5-route { display:flex; align-items:center; gap:4px; margin-bottom:12px; }
-  .s5-node { width:40px; height:40px; border-radius:50%; display:flex;
-    align-items:center; justify-content:center; font-size:9px; font-weight:700; color:#FFF; }
-  .s5-line { width:30px; height:2px; background:#00FF88; }
-  .s5-desc { font-size:13px; color:#9090A0; }
+  .s5-title { font-size:30px; font-weight:900; color:#00FF88; margin-bottom:20px; }
+  .s5-route { display:flex; align-items:center; gap:6px; margin-bottom:16px; }
+  .s5-node { width:55px; height:55px; border-radius:50%; display:flex;
+    align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#FFF; }
+  .s5-line { width:40px; height:3px; background:#00FF88; }
+  .s5-desc { font-size:16px; color:#9090A0; }
 
   /* Scene 6: Hormuz (same as s1) */
   /* Scene 7: Policy change */
-  .s7-warn { width:50px; height:50px; border:2px solid #FFD700; border-radius:50%;
-    display:flex; align-items:center; justify-content:center; font-size:24px;
-    font-weight:900; color:#FFD700; margin-bottom:12px; }
-  .s7-cases { display:flex; gap:8px; margin:12px 0; }
-  .s7-case { background:rgba(17,17,24,0.95); border-radius:6px; padding:8px 12px;
-    text-align:center; border:1.5px solid; min-width:100px; }
-  .s7-case .c-name { font-size:13px; font-weight:900; color:#FFF; }
-  .s7-case .c-policy { font-size:10px; margin:3px 0; }
-  .s7-case .c-year { font-size:9px; color:#606070; }
+  .s7-warn { width:70px; height:70px; border:3px solid #FFD700; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:36px;
+    font-weight:900; color:#FFD700; margin-bottom:16px; }
+  .s7-cases { display:flex; gap:12px; margin:16px 0; }
+  .s7-case { background:rgba(17,17,24,0.95); border-radius:6px; padding:12px 18px;
+    text-align:center; border:1.5px solid; min-width:130px; }
+  .s7-case .c-name { font-size:18px; font-weight:900; color:#FFF; }
+  .s7-case .c-policy { font-size:14px; margin:4px 0; }
+  .s7-case .c-year { font-size:11px; color:#606070; }
 
   /* Scene 8: Five nations */
-  .s8-title { font-size:20px; font-weight:900; color:#FF3366; margin-bottom:12px; }
-  .s8-nations { display:flex; gap:6px; margin-bottom:10px; }
-  .s8-nation { width:100px; height:140px; border-radius:6px; border:1.5px solid;
+  .s8-title { font-size:26px; font-weight:900; color:#FF3366; margin-bottom:16px; }
+  .s8-nations { display:flex; gap:8px; margin-bottom:14px; }
+  .s8-nation { width:120px; height:170px; border-radius:6px; border:1.5px solid;
     background:rgba(17,17,24,0.95); display:flex; flex-direction:column;
-    align-items:center; justify-content:center; gap:4px; }
-  .s8-nation .n-name { font-size:14px; font-weight:900; color:#FFF; }
-  .s8-nation .n-policy { font-size:10px; }
-  .s8-nation .n-year { font-size:9px; color:#606070; }
-  .s8-impact { font-size:12px; color:#FF3366; background:rgba(26,16,32,0.9);
-    padding:6px 16px; border-radius:4px; border:1px solid #FF3366; margin-bottom:6px; }
+    align-items:center; justify-content:center; gap:6px; }
+  .s8-nation .n-name { font-size:18px; font-weight:900; color:#FFF; }
+  .s8-nation .n-policy { font-size:13px; }
+  .s8-nation .n-year { font-size:11px; color:#606070; }
+  .s8-impact { font-size:15px; color:#FF3366; background:rgba(26,16,32,0.9);
+    padding:8px 20px; border-radius:4px; border:1px solid #FF3366; margin-bottom:8px; }
 
   /* Scene 9: EU */
-  .s9-title { font-size:20px; font-weight:900; color:#FFD700; margin-bottom:4px; }
-  .s9-sub { font-size:12px; color:#B0B0C0; margin-bottom:12px; }
-  .s9-circle { width:100px; height:100px; border-radius:50%; border:2px solid #FFD700;
-    display:flex; align-items:center; justify-content:center; font-size:32px;
-    font-weight:900; color:#FFD700; margin-bottom:12px; background:rgba(13,13,26,0.95); }
-  .s9-risks { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; max-width:500px; }
-  .s9-risk { background:rgba(17,17,24,0.95); border:1px solid #FFD700; border-radius:12px;
-    padding:4px 12px; font-size:11px; color:#C0C0D0; }
+  .s9-title { font-size:26px; font-weight:900; color:#FFD700; margin-bottom:6px; }
+  .s9-sub { font-size:16px; color:#B0B0C0; margin-bottom:16px; }
+  .s9-circle { width:140px; height:140px; border-radius:50%; border:3px solid #FFD700;
+    display:flex; align-items:center; justify-content:center; font-size:48px;
+    font-weight:900; color:#FFD700; margin-bottom:16px; background:rgba(13,13,26,0.95); }
+  .s9-risks { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; max-width:600px; }
+  .s9-risk { background:rgba(17,17,24,0.95); border:1px solid #FFD700; border-radius:14px;
+    padding:6px 16px; font-size:14px; color:#C0C0D0; }
 
   /* Scene 10: Three responses */
-  .s10-title { font-size:18px; font-weight:900; color:#00FF88; margin-bottom:12px; }
-  .s10-cards { display:flex; gap:8px; }
-  .s10-card { width:200px; height:200px; border-radius:8px; border:1.5px solid;
+  .s10-title { font-size:24px; font-weight:900; color:#00FF88; margin-bottom:16px; }
+  .s10-cards { display:flex; gap:12px; }
+  .s10-card { width:210px; height:260px; border-radius:8px; border:1.5px solid;
     background:rgba(17,17,24,0.95); display:flex; flex-direction:column;
-    align-items:center; padding-top:16px; }
-  .s10-card .r-title { font-size:16px; font-weight:900; color:#FFF; margin-bottom:10px; }
-  .s10-card .r-item { font-size:12px; color:#C0C0D0; margin:3px 0; }
+    align-items:center; padding-top:24px; }
+  .s10-card .r-title { font-size:22px; font-weight:900; color:#FFF; margin-bottom:14px; }
+  .s10-card .r-item { font-size:16px; color:#C0C0D0; margin:4px 0; }
 
   /* Scene 11: Geopolitical */
-  .s11-title { font-size:22px; font-weight:900; color:#FFD700; margin-bottom:4px; }
-  .s11-sub { font-size:13px; color:#B0B0C0; margin-bottom:12px; }
-  .s11-globe { width:120px; height:120px; border-radius:50%; border:2px solid #00FF88;
-    display:flex; align-items:center; justify-content:center; font-size:28px;
-    font-weight:900; color:#00FF88; margin-bottom:12px; background:rgba(13,13,26,0.95); }
-  .s11-points { display:flex; flex-direction:column; gap:4px; }
-  .s11-point { font-size:13px; color:#C0C0D0; }
+  .s11-title { font-size:30px; font-weight:900; color:#FFD700; margin-bottom:6px; }
+  .s11-sub { font-size:18px; color:#B0B0C0; margin-bottom:18px; }
+  .s11-globe { width:160px; height:160px; border-radius:50%; border:3px solid #00FF88;
+    display:flex; align-items:center; justify-content:center; font-size:40px;
+    font-weight:900; color:#00FF88; margin-bottom:18px; background:rgba(13,13,26,0.95); }
+  .s11-points { display:flex; flex-direction:column; gap:6px; }
+  .s11-point { font-size:18px; color:#C0C0D0; }
 
   /* Scene 12: Compliance */
-  .s12-title { font-size:22px; font-weight:900; color:#00FF88; margin-bottom:4px; }
-  .s12-sub { font-size:13px; color:#B0B0C0; margin-bottom:12px; }
-  .s12-gate { width:180px; height:130px; border-radius:8px; border:2px solid #00FF88;
+  .s12-title { font-size:30px; font-weight:900; color:#00FF88; margin-bottom:6px; }
+  .s12-sub { font-size:18px; color:#B0B0C0; margin-bottom:18px; }
+  .s12-gate { width:240px; height:170px; border-radius:8px; border:3px solid #00FF88;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    background:rgba(13,13,26,0.95); margin-bottom:10px; }
-  .s12-gate .gate-title { font-size:32px; font-weight:900; color:#00FF88; }
-  .s12-gate .gate-sub { font-size:11px; color:#00FF88; margin-top:4px; }
+    background:rgba(13,13,26,0.95); margin-bottom:14px; }
+  .s12-gate .gate-title { font-size:48px; font-weight:900; color:#00FF88; }
+  .s12-gate .gate-sub { font-size:16px; color:#00FF88; margin-top:6px; }
 
   /* Scene 13: Localization */
-  .s13-title { font-size:20px; font-weight:900; color:#00FF88; margin-bottom:4px; }
-  .s13-sub { font-size:12px; color:#B0B0C0; margin-bottom:12px; }
+  .s13-title { font-size:28px; font-weight:900; color:#00FF88; margin-bottom:6px; }
+  .s13-sub { font-size:16px; color:#B0B0C0; margin-bottom:18px; }
   .s13-boxes { display:flex; align-items:center; gap:0; }
-  .s13-box { width:100px; height:120px; border-radius:8px; border:2px solid;
+  .s13-box { width:140px; height:160px; border-radius:8px; border:2px solid;
     background:rgba(13,13,26,0.95); display:flex; align-items:center;
-    justify-content:center; font-size:18px; font-weight:900; }
-  .s13-arrow { width:40px; display:flex; align-items:center; }
-  .s13-arr-line { width:30px; height:3px; }
-  .s13-arr-head { width:0; height:0; border-top:8px solid transparent;
-    border-bottom:8px solid transparent; }
+    justify-content:center; font-size:26px; font-weight:900; }
+  .s13-arrow { width:50px; display:flex; align-items:center; }
+  .s13-arr-line { width:36px; height:3px; }
+  .s13-arr-head { width:0; height:0; border-top:10px solid transparent;
+    border-bottom:10px solid transparent; }
 
   /* Scene 14: Handshake (same as s13) */
   /* Scene 15: Growth */
-  .s15-title { font-size:22px; font-weight:900; color:#00FF88; margin-bottom:4px; }
-  .s15-sub { font-size:13px; color:#B0B0C0; margin-bottom:12px; }
-  .s15-arrow-up { width:0; height:0; border-left:25px solid transparent;
-    border-right:25px solid transparent; border-bottom:45px solid #00FF88; }
-  .s15-bar { width:25px; height:60px; background:#00FF88; margin-top:-2px; }
-  .s15-stats { display:flex; gap:10px; margin-top:12px; }
-  .s15-stat { background:rgba(13,13,26,0.95); border-radius:4px; padding:8px 16px;
+  .s15-title { font-size:30px; font-weight:900; color:#00FF88; margin-bottom:6px; }
+  .s15-sub { font-size:18px; color:#B0B0C0; margin-bottom:18px; }
+  .s15-arrow-up { width:0; height:0; border-left:35px solid transparent;
+    border-right:35px solid transparent; border-bottom:60px solid #00FF88; }
+  .s15-bar { width:35px; height:80px; background:#00FF88; margin-top:-2px; }
+  .s15-stats { display:flex; gap:14px; margin-top:16px; }
+  .s15-stat { background:rgba(13,13,26,0.95); border-radius:4px; padding:12px 22px;
     text-align:center; border:1px solid; }
-  .s15-stat .st-val { font-size:14px; font-weight:900; }
-  .s15-stat .st-label { font-size:9px; color:#9090A0; margin-top:2px; }
+  .s15-stat .st-val { font-size:18px; font-weight:900; }
+  .s15-stat .st-label { font-size:12px; color:#9090A0; margin-top:4px; }
 
   /* Scene 16: Final (same as s15) */
 
